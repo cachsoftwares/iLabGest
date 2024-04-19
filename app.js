@@ -84,10 +84,12 @@ app.get('/', is.authed, appControllers.home)
 import userRoutes from './routes/user/user.route.js'
 import adminEmployerRoutes from './routes/admin/employer.route.js'
 import employeeLaboratoryRoutes from './routes/employee/laboratory.route.js'
+import employeeEquipamentRoutes from './routes/employee/equipament.route.js'
 
 app.use('/user', userRoutes)
 app.use('/admin/employers', adminEmployerRoutes)
 app.use('/employee/laboratory', employeeLaboratoryRoutes)
+app.use('/employee/equipament', employeeEquipamentRoutes)
 
 /* app listen */
 const PORT = 3025 || process.env.PORT

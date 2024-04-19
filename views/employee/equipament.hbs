@@ -1,0 +1,281 @@
+<section id="equipaments" class="section">
+
+    <div class="container">
+
+        <header>
+            <div class="is-flex is-align-items-center is-justify-content-space-between">
+
+                <h4 class="has-text-link title is-size-4-mobile">Gestão de Equipamentos</h4>
+
+                <button class="button is-small is-primary js-modal-trigger" data-target="equipament-create--modal">
+                    <span class="is-hidden-desktop">
+                        <i class="bx bx-plus bx-sm"></i>
+                    </span>
+                    <span class="is-hidden-touch">
+                        Novo Equipamento
+                    </span>
+                </button>
+
+            </div>
+            <hr>
+        </header>
+
+        <div class="content">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each equipaments}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>
+                            <div class="is-flex is-flex-wrap-wrap is-gap-1">
+                                <div>
+                                    <form action="/employee/equipament/delete/{{_id}}" method="post">
+                                        <button type="submit" class="button is-ghost has-background-danger-90">
+                                            <i class="bx bx-trash has-text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <button class="button is-ghost has-background-warning-90 js-modal-trigger" data-target="equipament-update--modal" onclick="equipamentUpdateSetData('{{_id}}', '{{title}}', '{{area}}')">
+                                        <i class="bx bx-pencil has-text-warning"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="4" class="has-text-centered">Sem Equipamentos</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="modal" id="equipament-create--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Cadastar Equipamento</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/employee/equipament/create" method="post" id="equipament-create--form">
+
+                <div class="columns is-mobile is-multiline">
+
+                    <div class="column is-12-mobile is-8-tablet is-8-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentTitle">Título</label>
+                            <div class="control">
+                                <input name="createEquipamentTitle" id="createEquipamentTitle" class="input" type="text"
+                                    placeholder="ex.: Router">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12-mobile is-4-tablet is-4-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentPrice">Preço (AOA)</label>
+                            <div class="control">
+                                <input name="createEquipamentPrice" id="createEquipamentPrice" class="input" type="number"
+                                    placeholder="ex.: 100.000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12-mobile is-6-tablet is-6-desktop">
+                        <div class="field">
+                            <label for="createEquipamentStatus" class="label">Estado</label>
+                            <div class="select is-fullwidth">
+                                <select name="createEquipamentStatus" id="createEquipamentStatus">
+                                    <option selected value="Novo">Novo</option>
+                                    <option value="Bom">Bom</option>
+                                    <option value="Reciclado">Reciclado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12-mobile is-6-tablet is-6-desktop">
+                        <div class="field">
+                            <label for="createEquipamentCategory" class="label">Categoria</label>
+                            <div class="select is-fullwidth">
+                                <select name="createEquipamentCategory" id="createEquipamentCategory">
+                                    <option selected value="Desktop">Desktop</option>
+                                    <option value="Laptop">Laptop</option>
+                                    <option value="Router">Router</option>
+                                    <option value="Mouse">Mouse</option>
+                                    <option value="Teclado">Teclado</option>
+                                    <option value="Monitor">Monitor</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12-mobile is-4-tablet is-4-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentBrand">Marca</label>
+                            <div class="control">
+                                <input name="createEquipamentBrand" id="createEquipamentBrand" class="input" type="text"
+                                    placeholder="ex.: HP, DELL, Cisco...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12-mobile is-8-tablet is-8-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentSupplier">Fornecedor</label>
+                            <div class="control">
+                                <input name="createEquipamentSupplier" id="createEquipamentSupplier" class="input" type="text"
+                                    placeholder="ex.: NCR, ISB, Infornet...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12-mobile is-4-tablet is-4-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentPurchaseDate">Data de Aquisição</label>
+                            <div class="control">
+                                <input name="createEquipamentPurchaseDate" id="createEquipamentPurchaseDate" class="input" type="date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-6-mobile is-4-tablet is-4-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentManufaturingDate">Fabrico</label>
+                            <div class="control">
+                                <input name="createEquipamentManufaturingDate" id="createEquipamentManufaturingDate" class="input" max="2026" type="number" placeholder="ex.: 2015">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-6-mobile is-4-tablet is-4-desktop">
+                        <div class="field">
+                            <label class="label" for="createEquipamentUseFulLife">Vida Útil</label>
+                            <div class="control">
+                                <input name="createEquipamentUseFulLife" id="createEquipamentUseFulLife" class="input" min="1" type="number" placeholder="ex.: 3 anos">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label for="createEquipamentLaboratory" class="label">Laboratório</label>
+                            <div class="select is-fullwidth">
+                                <select name="createEquipamentLaboratory" id="createEquipamentLaboratory">
+                                    {{#each laboratories}}
+                                    <option value="{{_id}}">{{title}}</option>
+                                    {{else}}
+                                    <option disabled selected>Sem Laboratórios!</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label" for="createEquipamentNote">Anotações</label>
+                            <div class="control">
+                                <textarea class="textarea" name="createEquipamentNote" id="createEquipamentNote" placeholder="ex.: escreve o que julga importante"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="equipament-create--form" class="button is-primary">Cadastar</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<div class="modal" id="equipament-update--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Atualizar Equipamento</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/employee/equipament/update" method="post" id="equipament-update--form">
+
+                <input type="hidden" name="updateEquipamentId" id="updateEquipamentId">
+
+                <div class="columns is-multiline">
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Título</label>
+                            <div class="control">
+                                <input name="updateEquipamentTitle" id="updateEquipamentTitle" class="input" type="text"
+                                    placeholder="ex.: ILab-1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label for="updateEquipamentArea" class="label">Área</label>
+                            <div class="select is-fullwidth">
+                                <select name="updateEquipamentArea" id="updateEquipamentArea">
+                                    <option value="Informática">Informática</option>
+                                    <option value="Telecomunicações">Telecomunicações</option>
+                                    <option value="Eletrónica">Eletrónica</option>
+                                    <option value="Programação">Programação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="equipament-update--form" class="button is-primary">Atualizar</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+
+    updateEquipamentId = document.querySelector('input#updateEquipamentId')
+    updateEquipamentTitle = document.querySelector('input#updateEquipamentTitle')
+    updateEquipamentArea = document.querySelector('select#updateEquipamentArea')
+
+    function equipamentUpdateSetData(id, title, area) {
+
+        updateEquipamentId.value = id
+        updateEquipamentTitle.value = title
+        updateEquipamentArea.value = area
+    }
+</script>
+
+<script src="/js/components/modal.module.js"></script>
