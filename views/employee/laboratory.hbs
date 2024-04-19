@@ -46,6 +46,11 @@
                                         </button>
                                     </form>
                                 </div>
+                                <div>
+                                    <button class="button is-ghost has-background-warning-90 js-modal-trigger" data-target="laboratory-update--modal" onclick="laboratoryUpdateSetData('{{_id}}', '{{title}}', '{{area}}')">
+                                        <i class="bx bx-pencil has-text-warning"></i>
+                                    </button>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -79,7 +84,7 @@
                         <div class="field">
                             <label class="label">Título</label>
                             <div class="control">
-                                <input name="createLaboratoyTitle" id="createLaboratoyTitle" class="input" type="text"
+                                <input name="createLaboratoryTitle" id="createLaboratoryTitle" class="input" type="text"
                                     placeholder="ex.: ILab-1">
                             </div>
                         </div>
@@ -112,5 +117,73 @@
         </footer>
     </div>
 </div>
+
+
+<div class="modal" id="laboratory-update--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Atualizar Laboratório</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/employee/laboratory/update" method="post" id="laboratory-update--form">
+
+                <input type="hidden" name="updateLaboratoryId" id="updateLaboratoryId">
+
+                <div class="columns is-multiline">
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Título</label>
+                            <div class="control">
+                                <input name="updateLaboratoryTitle" id="updateLaboratoryTitle" class="input" type="text"
+                                    placeholder="ex.: ILab-1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label for="updateLaboratoryArea" class="label">Área</label>
+                            <div class="select is-fullwidth">
+                                <select name="updateLaboratoryArea" id="updateLaboratoryArea">
+                                    <option value="Informática">Informática</option>
+                                    <option value="Telecomunicações">Telecomunicações</option>
+                                    <option value="Eletrónica">Eletrónica</option>
+                                    <option value="Programação">Programação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="laboratory-update--form" class="button is-primary">Atualizar</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+
+    updateLaboratoryId = document.querySelector('input#updateLaboratoryId')
+    updateLaboratoryTitle = document.querySelector('input#updateLaboratoryTitle')
+    updateLaboratoryArea = document.querySelector('select#updateLaboratoryArea')
+
+    function laboratoryUpdateSetData(id, title, area) {
+
+        updateLaboratoryId.value = id
+        updateLaboratoryTitle.value = title
+        updateLaboratoryArea.value = area
+    }
+</script>
 
 <script src="/js/components/modal.module.js"></script>

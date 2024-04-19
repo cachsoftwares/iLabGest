@@ -25,3 +25,13 @@ export const delet = (id) => {
         .findByIdAndDelete({_id: id})
         .catch(err => internal(err, false, false, false))
 }
+
+export const update = (id, data) => {
+
+    return Laboratory.findByIdAndUpdate(
+
+        {_id: id},
+        {$set: data}
+
+    ).catch(err => internal(err, '/employee/laboratory/read', false, false))
+}

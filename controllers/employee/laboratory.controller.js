@@ -16,7 +16,7 @@ export const readLaboratory = (req, res) => {
 export const createLaboratory = (req, res) => {
 
     const data = {
-        title: req.body.createLaboratoyTitle,
+        title: req.body.createLaboratoryTitle,
         area: req.body.createLaboratoryArea
     }
 
@@ -35,6 +35,23 @@ export const deleteLaboratory = (req, res) => {
     laboratoryService.delet(id).then(() => {
 
         req.flash('success_msg', 'Laboratório Deletado')
+        res.redirect('/employee/laboratory/read')
+
+    }).catch(err => internal(err, '/employee/laboratory/read', true, false))
+}
+
+export const updateLaboratory = (req, res) => {
+
+    const id = req.body.updateLaboratoryId
+
+    const data = {
+        title: req.body.updateLaboratoryTitle,
+        area: req.body.updateLaboratoryArea
+    }
+
+    laboratoryService.update(id, data).then(() => {
+
+        req.flash('success_msg', 'Laboratório Atualizado')
         res.redirect('/employee/laboratory/read')
 
     }).catch(err => internal(err, '/employee/laboratory/read', true, false))
