@@ -15,7 +15,7 @@ _Ainda não disponível_
     - Após o Download com Sucesso, instale esta Ferramenta na sua máquina.
     - Teste a Instalação com os comandos: `node -version` e `npm -version`. Deverá retornar as versões de cada Ferramenta.
 2. MongoDB.
-    - [Baixar]().
+    - [Baixar](https://mongodb.com/try/download/community).
     - Após o Download com Sucesso, instale esta Ferramenta na sua máquina.
     - Teste a Instalação com o comando: `mongo --version`. Deverá retornar a versão da Ferramenta.
     - Recebe a mensagem `mongo não é reconhecido como comando interno`?
@@ -29,52 +29,40 @@ _Ainda não disponível_
 
 **Para uma Instalação Geral execute o comando `npm install` sem especificar quais pacotes serão instalados. Isto instala todos os Pacotes registrados no aquivo `./package.json`.**
 
-*Criação de Rotas*
+*Criação de Rotas*  
 `npm install express`
 
-*Mecanismo de Visualização*
+*Mecanismo de Visualização*  
 `npm install express-handlebars`
 
-*Comutação de dados do Front*
+*Comutação de dados do Front*  
 `npm install body-parser`
 
-*Banco de Dados*
+*Banco de Dados*  
 `npm install mongoose`
 
-*Criptografia das Senhas no Banco de Dados*
+*Criptografia das Senhas no Banco de Dados*  
 `npm install bcryptjs`
 
-*Autenticação*
+*Autenticação*  
 `npm install passport passport-local passport-strategy`
 
-*Sessão de Autenticação*
+*Sessão de Autenticação*  
 `npm install express-session`
 
-*Upload de arquivos*
+*Upload de arquivos*  
 `npm install multer`
 
-*Mensagens de Feedback ao Usuário*
+*Mensagens de Feedback ao Usuário*  
 `npm install connect-flash`
 
-*Variáveis de Ambiente*
+*Variáveis de Ambiente*  
 `npm install dotenv`
 
 
 **Copiar todos os Comando de Instalação de Pacotes**
 ```bash
-    npm install
-        express
-        express-handlebars
-        express-session
-        bcryptjs
-        body-parser
-        dotenv
-        mongoose
-        connect-flash
-        multer
-        passport
-        passport-local
-        passport-strategy
+    npm install express express-handlebars express-session bcryptjs body-parser dotenv mongoose connect-flash multer passport passport-local passport-strategy
 ```
 
 ### Ligar o Banco de Dados
@@ -114,7 +102,6 @@ _Ainda não disponível_
                     <campo>: <valor>
                 }
             )
-        ```
     - Ex.:
         - ```bash
             db.users.insertOne(
@@ -124,7 +111,6 @@ _Ainda não disponível_
                     status: 'Offline'
                 }
             )
-        ```
 
 - Inserir vários Registros numa Coleção
     - Sintaxe:
@@ -152,7 +138,6 @@ _Ainda não disponível_
                     }
                 ]
             )
-        ```
     - Ex.:
         - ```bash
             db.users.insertMany(
@@ -174,7 +159,6 @@ _Ainda não disponível_
                     }
                 ]
             )
-        ```
 
 - Exibir os Dados de uma Coleção
     - Sintaxe: `db.<nome-da-coleção>.find().pretty()`
