@@ -1,0 +1,26 @@
+{
+  "name": "ilabgest",
+  "version": "1.0.0",
+  "description": "Sistema de Gestão de Ativos dos Laboratórios do INSTIC via QRCode",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cachsoftwares/iLabGest.git"
+  },
+  "keywords": [
+    "Gestão",
+    "Equipamentos",
+    "Laboratório",
+    "INSTIC",
+    "QRCode"
+  ],
+  "author": "cachsoftwares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cachsoftwares/iLabGest/issues"
+  },
+  "homepage": "https://github.com/cachsoftwares/iLabGest#readme"
+}

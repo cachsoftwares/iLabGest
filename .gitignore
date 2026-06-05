@@ -1,0 +1,9 @@
+# Folders
+node_modules/
+public/boxicons/
+
+# Files
+.env
+
+# .zip
+public/boxicons.zip
