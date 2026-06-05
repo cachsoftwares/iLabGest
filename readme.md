@@ -183,12 +183,31 @@ _Ainda não disponível_
             )
 
 - Atualizar vários Registros numa Coleção
-    - Sintaxe: `db.<nome-da-coleção>.updateMany({<campo>: <valor>}, {$set: {<campo>: <valor>}})`
-    - Ex.: `db.users.updateMany({status: 'Online'}, {$set: {status: 'Offline'}})`
+    - Sintaxe:
+        - ```bash
+            db.<nome-da-coleção>.updateMany(
+                {<campo>: <valor>},
+                {$set: {<campo>: <valor>}}
+            )
+    - Ex.:
+        - ```bash
+            db.users.updateMany(
+                {status: 'Online'},
+                {$set: {status: 'Offline'}}
+            )
 
 - Atualizar todos os Registros numa Coleção
-    - Sintaxe: `db.<nome-da-coleção>.updateMany({<filtro-vazio>}, {$set: {<campo>: <valor>}})`
-    - Ex.: `db.users.updateMany({}, {$set: {status: 'Offline'}})`
+    - Sintaxe:
+        - ```bash
+            db.<nome-da-coleção>.updateMany(
+                {<filtro-vazio>},
+                {$set: {<campo>: <valor>}}
+            )
+    - Ex.: ```bash
+        db.users.updateMany(
+            {},
+            {$set: {status: 'Offline'}}
+        )
 
 - Deletar um Registro numa Coleção
     - Sintaxe: `db.<nome-da-coleção>.deleteOne({<campo>: <valor>})`
