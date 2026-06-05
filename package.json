@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Sistema de Gestão de Ativos dos Laboratórios do INSTIC via QRCode",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js"
