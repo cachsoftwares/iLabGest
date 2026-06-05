@@ -169,8 +169,18 @@ _Ainda não disponível_
     - Ex.: `db.users.find({tel: '945217566'}).pretty()`
 
 - Atualizar um Registro numa Coleção
-    - Sintaxe: `db.<nome-da-coleção>.updateOne({<campo>: <valor>}, {$set: {<campo>: <valor>}})`
-    - Ex.: `db.users.updateOne({tel: '945217566'}, {$set: {name: 'Vladmir Cach Dev'}})`
+    - Sintaxe:
+        - ```bash
+            db.<nome-da-coleção>.updateOne(
+                {<campo>: <valor>},
+                {$set: {<campo>: <valor>}}
+            )
+    - Ex.:
+        - ```bash
+            db.users.updateOne(
+                {tel: '945217566'},
+                {$set: {name: 'Vladmir Cach Dev'}}
+            )
 
 - Atualizar vários Registros numa Coleção
     - Sintaxe: `db.<nome-da-coleção>.updateMany({<campo>: <valor>}, {$set: {<campo>: <valor>}})`
