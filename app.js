@@ -4,6 +4,9 @@ import dotenv from 'dotenv'
 import handlebars from 'express-handlebars'
 import path from 'path'
 import {fileURLToPath} from 'url'
+import session from 'express-session'
+import passport from 'passport'
+import flash from 'connect-flash'
 
 /* app config */
 const app = express()
@@ -28,14 +31,31 @@ const __dirname = path.dirname(__filename)
 app.use(express.static(path.join(__dirname, 'public')))
 
 /* mongodb connect */
-import mongoConnect from './config/database.js'
+import mongoConnect from './helpers/database.help.js'
 mongoConnect()
+
+/* session config */
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+}))
+
+/* passport config */
+import auth from './helpers/auth.help.js'
+auth(passport)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+/* flash config */
+app.use(flash())
 
 /* controllers import */
 import * as appControllers from './controllers/app/app.controller.js'
 
 /* internal routes */
-app.get('/', appControllers.inicio)
+app.get('/', appControllers.home)
 
 /* external routes */
 import userRoutes from './routes/user/user.route.js'

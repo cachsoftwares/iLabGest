@@ -2,7 +2,7 @@
 import mongoose from 'mongoose'
 
 /* helpers import */
-import createAdminIfNotExist from '../helpers/createAdmin.help.js'
+import createAdminIfNotExist from './createAdmin.help.js'
 
 export default function mongoConnect() {
 

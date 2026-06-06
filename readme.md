@@ -81,6 +81,29 @@ _Ainda não disponível_
 
 
 
+### Adicionado Variáveis de Processo
+1. Criar um ficheiro .env na raiz do projeto.
+    - `./.env`
+2. Registrar as Variáveis de Processo.
+    - ```bash
+        MONGO_URI_LOCAL = 'mongodb://localhost/ilabgest'
+        MONGO_URI_CLOUD = '<uri-mongo-cloud>'
+        ADMIN_PWD = '<senha-admin>'
+        SESSION_SECRET = '<session-secret>'
+    - Poderá obter o contúdo da variável `MONGO_URI_CLOUD` criando um banco de dados em nuvem em `https://atlas.mongodb.com`.
+    - Poderá usar uma senha ao seu critério para a variável `ADMIN_PWD`.
+        - Ex.: 'senha@admin2026'.
+    - Poderá usar uma senha ao seu critério para a variável `SESSION_SECRET`.
+        - Ex.: '20262027202820292030'.
+    - Exemplo Completo:
+        - ```bash
+            MONGO_URI_LOCAL = 'mongodb://localhost/ilabgest'
+            ADMIN_PWD = 'senha@admin2026'
+            SESSION_SECRET = '20262027202820292030'
+        - A ausência da variável `MONGO_URI_CLOUD` não compromete a execução do Projeto na sua máquina.
+
+
+
 ### Ligar o Banco de Dados
 1. Abra o terminal (cmd)
 2. Execute o comando `mongod`

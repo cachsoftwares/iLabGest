@@ -1,5 +1,5 @@
 /* controllers */
-export const inicio = (req, res) => {
+export const home = (req, res) => {
 
-    res.render('inicio')
+    res.render('home')
 }
