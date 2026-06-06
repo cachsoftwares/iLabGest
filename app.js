@@ -33,5 +33,10 @@ import * as appControllers from './controllers/app/app.controller.js'
 /* internal routes */
 app.get('/', appControllers.inicio)
 
+/* external routes */
+import userRoutes from './routes/user/user.route.js'
+
+app.use('/user', userRoutes)
+
 /* app listen */
 app.listen(process.env.PORT, () => console.log(`Server Fly - http://localhost:${process.env.PORT}`))
