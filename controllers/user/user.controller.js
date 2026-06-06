@@ -4,6 +4,9 @@ import passport from 'passport'
 /* models import */
 import User from '../../models/user.model.js'
 
+/* middlewares import */
+import { internalError } from '../../middlewares/error.middleware.js'
+
 /* controllers */
 export const sign = (req, res) => {
 
@@ -27,27 +30,18 @@ export const signout = (req, res) => {
 
         if (err) {
 
-            console.log(`Erro Interno: ${err}`)
-            req.flash('error_msg', 'Erro Interno')
-            res.redirect('/user/profile')
-
-        } else {
-
-            User.findByIdAndUpdate(
-                { _id: userId },
-                { $set: { status: 'Offline' } }
-            ).then(() => {
-
-                req.flash('info_msg', 'Conta Fechada')
-                res.redirect('/user/sign')
-
-            }).catch(err => {
-
-                console.log(`Erro Interno: ${err}`)
-                req.flash('error_msg', 'Erro Interno')
-                res.redirect('/user/sign')
-            })
+            internalError(err, '/user/profile', true, true)
         }
+
+        User.findByIdAndUpdate(
+            { _id: userId },
+            { $set: { status: 'Offline' } }
+        ).then(() => {
+
+            req.flash('info_msg', 'Conta Fechada')
+            res.redirect('/user/sign')
+
+        }).catch(err => internalError(err, '/user/sign', true, false))
     })
 }
 
@@ -67,13 +61,7 @@ export const profile = async (req, res) => {
             res.render('user/profile')
             return
 
-        }).catch(err => {
-
-            console.log(`Erro Interno: ${err}`)
-            req.flash('error_msg', 'Erro Interno')
-            res.redirect('/')
-            return
-        })
+        }).catch(err => internalError(err, '/', true, true))
     }
 
     res.render('user/profile')
