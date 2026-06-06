@@ -1,4 +1,8 @@
-@import 'navbar.css';
 @import 'media_query.css';
 
+/* components */
+@import 'navbar.css';
+@import 'msg.css';
+
+/* customization */
 @import 'custom.css';

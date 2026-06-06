@@ -1,0 +1,67 @@
+ /* The snackbar - position it at the bottom and in the middle of the screen */
+ #snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    text-align: center;
+    border-radius: 2px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible;
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+} 
+
+
+/* my code */
+#snackbar>.content {
+    padding: 16px;
+    margin: 0 !important;
+}
+
+
+#snackbar>.progress {
+    margin: 4px auto 0 auto;
+    width: 80%;
+    height: 2px;
+    animation: smalling 3s;
+    -webkit-animation: smalling 3s;
+}
+
+@keyframes smalling {
+    from {
+        width: 80%;
+    } to {
+        width: 0;
+    }
+}

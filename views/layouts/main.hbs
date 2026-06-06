@@ -20,6 +20,8 @@
 </head>
 <body>
 
+    {{>_layouts/msg}}
+
     <header>
         {{>_layouts/navbar}}
     </header>
@@ -29,6 +31,10 @@
     </main>
 
     <footer></footer>
+
+
+    {{!-- Scripts --}}
+    <script type="module" src="/js/components/msg.module.js"></script>
     
 </body>
 </html>
