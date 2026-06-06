@@ -15,8 +15,8 @@ const hdb = handlebars.create({
     extname: '.hbs'
 })
 
-app.engine('hdb', hdb.engine)
-app.set('view engine', 'hdb')
+app.engine('hbs', hdb.engine)
+app.set('view engine', 'hbs')
 
 /* controllers import */
 import * as appControllers from './controllers/app/app.controller.js'
