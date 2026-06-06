@@ -1,0 +1,57 @@
+/* MOBILE */
+@media (max-width: 599px) {
+
+    /* Estilos para mobile */
+    .modal-card,
+    .modal-content {
+        width: 90% !important;
+    }
+}
+
+/* TRANSIÇÃO de MOBILE para TABLET */
+@media (min-width: 580px) and (max-width: 620px) {
+
+    /* Ajustes entre mobile e tablet */
+
+}
+
+/* TABLET */
+@media (min-width: 600px) and (max-width: 899px) {
+    
+    /* Estilos para tablet */
+
+}
+
+/* TRANSIÇÃO de TABLET para DESKTOP MÉDIO */
+@media (min-width: 880px) and (max-width: 920px) {
+    
+    /* Ajustes entre tablet e desktop médio */
+
+}
+
+/* DESKTOP MÉDIO */
+@media (min-width: 900px) and (max-width: 1199px) {
+
+    /* Estilos para desktop médio */
+    nav .navbar-menu .navbar-start > a.navbar-item i {
+        display: none;
+    }
+}
+
+/* TRANSIÇÃO de DESKTOP MÉDIO para DESKTOP LARGO */
+@media (min-width: 1180px) and (max-width: 1220px) {
+
+    /* Ajustes entre desktop médio e desktop largo */
+    nav .navbar-menu .navbar-start > a.navbar-item i {
+        display: none;
+    }
+}
+
+/* DESKTOP LARGO */
+@media (min-width: 1200px) {
+
+    /* Estilos para desktop largo */
+    nav .navbar-menu .navbar-start > a.navbar-item i {
+        display: none;
+    }
+}

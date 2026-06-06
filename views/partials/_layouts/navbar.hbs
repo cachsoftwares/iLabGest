@@ -1,0 +1,90 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <figure class="image">
+                    <img src="/files/img/logo/logo.png" alt="UL">
+                </figure>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/" class="navbar-item">
+                    <i class="bx bx-bar-chart"></i>
+                    <span>Painel</span>
+                </a>
+
+                <a href="/laboratorios" class="navbar-item">
+                    <i class="bx bx-store"></i>
+                    <span>Laboratórios</span>
+                </a>
+
+                <a href="/equipamentos" class="navbar-item">
+                    <i class="bx bx-server"></i>
+                    <span>Equipamentos</span>
+                </a>
+
+                <a href="/inventarios" class="navbar-item">
+                    <i class="bx bx-file"></i>
+                    <span>Inventários</span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        Mais
+                    </a>
+
+                    <div class="navbar-dropdown">
+
+                        <a class="navbar-item">
+                            <i class="bx bx-info-circle"></i>
+                            <span>Sobre o iLabGest</span>
+                        </a>
+
+                        <a class="navbar-item">
+                            <i class="bx bx-qr"></i>
+                            <span>Sobre o QRCode</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {{#if user}}
+                        <div class="tag is-rounded is-medium has-background-warning-90 has-text-warning-50 is-flex is-gap-1">
+                            <i class="bx bx-log-out"></i>
+                            <span>Sair</span>
+                        </div>
+
+                        <div class="tag is-rounded is-medium has-background-link-95 has-text-link-50 is-flex is-gap-1 pl-1">
+                            <figure class="image is-24x24">
+                                <img src="/files/img/users/{{user.foto}}" alt="{{user.nome}}" class="is-rounded">
+                            </figure>
+                            <span>{{user.nome}}</span>
+                        </div>
+                        {{else}}
+                        <a href="/user/sign?action=in" class="button is-primary">
+                            Entrar
+                        </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script defer src="/js/components/navbar.module.js"></script>
