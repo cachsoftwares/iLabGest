@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import handlebars from 'express-handlebars'
 import path from 'path'
 import {fileURLToPath} from 'url'
+import mongoose from 'mongoose'
 
 /* app config */
 const app = express()
@@ -26,6 +27,10 @@ const __dirname = path.dirname(__filename)
 
 /* static files */
 app.use(express.static(path.join(__dirname, 'public')))
+
+/* mongodb connect */
+import mongoConnect from './config/database.js'
+mongoConnect()
 
 /* controllers import */
 import * as appControllers from './controllers/app/app.controller.js'
