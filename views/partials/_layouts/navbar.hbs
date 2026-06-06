@@ -24,17 +24,17 @@
                     <span>Painel</span>
                 </a>
 
-                <a href="/laboratorios" class="navbar-item">
+                <a class="navbar-item">
                     <i class="bx bx-store"></i>
                     <span>Laboratórios</span>
                 </a>
 
-                <a href="/equipamentos" class="navbar-item">
+                <a class="navbar-item">
                     <i class="bx bx-server"></i>
                     <span>Equipamentos</span>
                 </a>
 
-                <a href="/inventarios" class="navbar-item">
+                <a class="navbar-item">
                     <i class="bx bx-file"></i>
                     <span>Inventários</span>
                 </a>
@@ -64,17 +64,19 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         {{#if user}}
-                        <div onclick="document.querySelector('form#sign-out--form').submit()" class="tag is-rounded is-medium has-background-warning-90 has-text-warning-50 is-flex is-gap-1">
+                        <div onclick="document.querySelector('form#sign-out--form').submit()" class="tag is-rounded is-medium is-clickable has-background-warning-90 has-text-warning-50 is-flex is-gap-1">
                             <i class="bx bx-log-out"></i>
                             <span>Sair</span>
                         </div>
+                        <a href="/user/profile">
 
-                        <div class="tag is-rounded is-medium has-background-link-95 has-text-link-50 is-flex is-gap-1 pl-1">
+                        <div class="tag is-rounded is-medium is-clickable has-background-link-95 has-text-link-50 is-flex is-gap-1 pl-1">
                             <figure class="image is-24x24">
                                 <img src="/files/img/users/{{user.photo}}" alt="{{user.name}}" class="is-rounded">
                             </figure>
                             <span>{{user.name}}</span>
                         </div>
+                        </a>
                         {{else}}
                         <a href="/user/sign" class="button is-primary">
                             Entrar
