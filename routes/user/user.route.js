@@ -10,6 +10,7 @@ import * as userControllers from '../../controllers/user/user.controller.js'
 /* routes */
 router.get('/sign', userControllers.sign)
 router.post('/sign/in', userControllers.signin)
+router.post('/sign/out', userControllers.signout)
 router.get('/profile', userControllers.profile)
 
 /* router export */

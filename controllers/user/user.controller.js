@@ -16,6 +16,24 @@ export const signin = (req, res, next) => {
     })(req, res, next)
 }
 
+export const signout = (req, res) => {
+
+    req.logout(err => {
+
+        if(err) {
+
+            console.log(`Erro Interno: ${err}`)
+            req.flash('error_msg', 'Erro Interno')
+            res.redirect('/user/profile')
+        
+        } else {
+
+            req.flash('info_msg', 'Conta Fechada')
+            res.redirect('/user/sign')
+        }
+    })
+}
+
 export const profile = (req, res) => {
 
     res.render('user/profile')

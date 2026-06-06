@@ -64,7 +64,7 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         {{#if user}}
-                        <div class="tag is-rounded is-medium has-background-warning-90 has-text-warning-50 is-flex is-gap-1">
+                        <div onclick="document.querySelector('form#sign-out--form').submit()" class="tag is-rounded is-medium has-background-warning-90 has-text-warning-50 is-flex is-gap-1">
                             <i class="bx bx-log-out"></i>
                             <span>Sair</span>
                         </div>
@@ -86,5 +86,7 @@
         </div>
     </div>
 </nav>
+
+<form action="/user/sign/out" method="post" id="sign-out--form"></form>
 
 <script defer src="/js/components/navbar.module.js"></script>
