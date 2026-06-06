@@ -1,9 +1,11 @@
 # Folders
 node_modules/
+public/bulma/
 public/boxicons/
 
 # Files
 .env
 
 # .zip
+public/bulma.zip
 public/boxicons.zip
