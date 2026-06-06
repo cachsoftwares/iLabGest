@@ -51,6 +51,16 @@ app.use(passport.session())
 /* flash config */
 app.use(flash())
 
+/* middlewares config */
+app.use((req, res, next) => {
+    res.locals.info_msg = req.flash('info_msg')
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    res.locals.user = req.user || null
+    next()
+})
+
 /* controllers import */
 import * as appControllers from './controllers/app/app.controller.js'
 

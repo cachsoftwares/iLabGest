@@ -11,7 +11,7 @@ export const signin = (req, res, next) => {
 
     passport.authenticate('local', {
         successRedirect: '/user/profile',
-        failureRedirect: '/',
+        failureRedirect: '/user/sign',
         failureFlash: true
     })(req, res, next)
 }
