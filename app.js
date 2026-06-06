@@ -2,6 +2,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import handlebars from 'express-handlebars'
+import path from 'path'
+import {fileURLToPath} from 'url'
 
 /* app config */
 const app = express()
@@ -17,6 +19,13 @@ const hdb = handlebars.create({
 
 app.engine('hbs', hdb.engine)
 app.set('view engine', 'hbs')
+
+/* filename & dirname */
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+/* static files */
+app.use(express.static(path.join(__dirname, 'public')))
 
 /* controllers import */
 import * as appControllers from './controllers/app/app.controller.js'
