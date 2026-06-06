@@ -1,0 +1,22 @@
+<section id="profile--content" class="container">
+
+    <div class="columns is-multiline is-flex">
+
+        <div
+            class="column is-10-mobile is-offset-1-mobile is-6-tablet is-offset-3-tablet is-4-desktop is-offset-0-desktop">
+            {{>_user/profile/components/cards/user}}
+            {{>_user/profile/components/cards/update}}
+        </div>
+
+        <div
+            class="column is-10-mobile is-offset-1-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-0-desktop">
+            {{#if (eq user.role 'Administrador')}}
+            admin dash
+            {{/if}}
+        </div>
+
+    </div>
+
+</section>
+
+<script defer type="module" src="/js/components/modal.module.js"></script>

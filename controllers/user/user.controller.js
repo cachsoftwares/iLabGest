@@ -15,3 +15,8 @@ export const signin = (req, res, next) => {
         failureFlash: true
     })(req, res, next)
 }
+
+export const profile = (req, res) => {
+
+    res.render('user/profile')
+}

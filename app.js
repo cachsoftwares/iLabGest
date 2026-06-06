@@ -17,6 +17,11 @@ dotenv.config()
 
 /* handlebars config */
 const hdb = handlebars.create({
+    helpers: {
+        eq: function(a, b) {
+            return a === b
+        }
+    },
     defaultLayout: 'main',
     extname: '.hbs'
 })
