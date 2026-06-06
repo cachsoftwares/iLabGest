@@ -4,8 +4,10 @@
 ## Guia das Funcionalidades
 _Ainda não disponível_
 
+
 ## Usar a Versão Hospedada (online)
 _Ainda não disponível_
+
 
 ## Executar na Sua Máquina
 
@@ -13,17 +15,29 @@ _Ainda não disponível_
 1. NodeJS (incluindo o npm).
     - [Baixar](https://nodejs.org).
     - Após o Download com Sucesso, instale esta Ferramenta na sua máquina.
-    - Teste a Instalação com os comandos: `node -version` e `npm -version`. Deverá retornar as versões de cada Ferramenta.
+    - Teste a Instalação com os comandos: `node -version` e `npm -version`. Isto vai retornar as versões de cada Ferramenta.
 2. MongoDB.
     - [Baixar](https://mongodb.com/try/download/community).
     - Após o Download com Sucesso, instale esta Ferramenta na sua máquina.
-    - Teste a Instalação com o comando: `mongo --version`. Deverá retornar a versão da Ferramenta.
+    - Teste a Instalação com o comando: `mongo --version`. Isto vai retornar a versão da Ferramenta.
     - Recebe a mensagem `mongo não é reconhecido como comando interno`?
-        - Isto acontece porque, nem sempre a Ferramenta de Instalação do Mongo o registra como uma Variável de Ambiete. Deverá o registrar manualmente e criar a seguinte estrutura de pastas: `C:/data/db`
+        - Isto acontece porque, nem sempre a Ferramenta de Instalação do Mongo o registra como uma Variável de Ambiete. Terá de o registrar manualmente e criar a seguinte estrutura de pastas: `C:/data/db`
 3. Git.
     - [Baixar](http://git-scm.com/downloads).
     - Após o Download com Sucesso, instale esta Ferramenta na sua máquina.
-    - Teste a Instalação com o comando: `git --version`. Deverá retornar a versão da Ferramenta.
+    - Teste a Instalação com o comando: `git --version`. Isto vai retornar a versão da Ferramenta.
+
+
+
+### Baixando o Projeto
+1. Abra o terminal (cmd).
+2. Navegue até a Pasta que ira conter o Projeto.
+    - Ex.: `cd Desktop`.
+3. Clonar o Projeto a partir da Origem Remota (GitHub).
+    - `git clone https://github.com/cachsoftwares/iLabGest.git`.
+        - Isto vai baixar o código-fonte da Aplicação na sua Área de trabalho contido na pasta iLabGest.
+
+
 
 ### Instalando Pacotes
 
@@ -65,12 +79,16 @@ _Ainda não disponível_
     npm install express express-handlebars express-session bcryptjs body-parser dotenv mongoose connect-flash multer passport passport-local passport-strategy
 ```
 
+
+
 ### Ligar o Banco de Dados
 1. Abra o terminal (cmd)
 2. Execute o comando `mongod`
-    - Isto deverá ligar o Servidor do Banco de Dados
+    - Isto vai ligar o Servidor do Banco de Dados
 3. Execute o comando `mongo`
-    - Isto deverá inicilizar o SGBD via CLI
+    - Isto vai inicilizar o SGBD via CLI
+
+
 
 ### Ligar o Servidor da Aplicação
 1. Abra o terminal (cmd)
@@ -79,6 +97,8 @@ _Ainda não disponível_
 3. Execute o comando `node app.js`
     - Isto vai executar o Servidor da Aplicação e Retornar a Mensagem `Server Fly - localhost:3025`, `MongoDB Connected` e `Admin created` se for a primeira vez e/ou não haver um Administrador Cadastrado no Banco de Dados
 4. Abra o seu Navegador (FireFox, Chrome, Brave, etc) e digite no endereço de pesquisa `localhost:3025`
+
+
 
 ### Mangendo o Banco de Dados
 - Listar todos os Bancos de Dados
@@ -203,11 +223,12 @@ _Ainda não disponível_
                 {<filtro-vazio>},
                 {$set: {<campo>: <valor>}}
             )
-    - Ex.: ```bash
-        db.users.updateMany(
-            {},
-            {$set: {status: 'Offline'}}
-        )
+    - Ex.:
+        - ```bash
+            db.users.updateMany(
+                {},
+                {$set: {status: 'Offline'}}
+            )
 
 - Deletar um Registro numa Coleção
     - Sintaxe: `db.<nome-da-coleção>.deleteOne({<campo>: <valor>})`
