@@ -8,7 +8,7 @@ import User from '../models/user.model.js'
 export default function(passport) {
 
     passport.use(new localStrategy(
-        {usernameField: 'signinUserTel', passwordField: 'signinUserPassword'},
+        {usernameField: 'signinTel', passwordField: 'signinPwd'},
         (tel, pwd, done) => {
 
             //const telFormat = tel.toString().replaceAll(' ', '')
@@ -17,14 +17,12 @@ export default function(passport) {
             User.findOne({tel: tel}).then(user => {
 
                 if(!user) {
-                    // temp
-                    console.log('Conta não Existe')
+
                     return done(null, false, {message: 'Conta não Existe'})
                 }
 
                 if(user.status == 'Bloqueado') {
-                    // temp
-                    console.log('Conta Bloqueada')
+
                     return done(null, false, {message: 'Conta Bloqueada'})
                 }
 
@@ -37,11 +35,9 @@ export default function(passport) {
                     
                     if(match) {
 
-                        // temp
-                        console.log('Senha Certa')
                         return done(null, user)
                         
-                    } else { /* temp */ console.log('Senha Errada'); return done(null, false, {message: 'Senha Errada'}) }
+                    } else { return done(null, false, {message: 'Senha Errada'}) }
                 })
 
             }).catch(err => {

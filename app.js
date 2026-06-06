@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import handlebars from 'express-handlebars'
 import path from 'path'
 import {fileURLToPath} from 'url'
+import bodyParser from 'body-parser'
 import session from 'express-session'
 import passport from 'passport'
 import flash from 'connect-flash'
@@ -33,6 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 /* mongodb connect */
 import mongoConnect from './helpers/database.help.js'
 mongoConnect()
+
+/* body-parser config */
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 /* session config */
 app.use(session({
