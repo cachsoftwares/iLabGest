@@ -4,7 +4,6 @@ import dotenv from 'dotenv'
 import handlebars from 'express-handlebars'
 import path from 'path'
 import {fileURLToPath} from 'url'
-import mongoose from 'mongoose'
 
 /* app config */
 const app = express()
@@ -44,4 +43,5 @@ import userRoutes from './routes/user/user.route.js'
 app.use('/user', userRoutes)
 
 /* app listen */
-app.listen(process.env.PORT, () => console.log(`Server Fly - http://localhost:${process.env.PORT}`))
+const PORT = 3025 || process.env.PORT
+app.listen(PORT, () => console.log(`Server Fly - http://localhost:${PORT}`))

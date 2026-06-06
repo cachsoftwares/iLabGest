@@ -3,7 +3,9 @@ import mongoose from 'mongoose'
 
 export default function mongoConnect() {
 
-    return mongoose.connect('mongodb://localhost/ilabgest').then(() => {
+    const MongoURI = process.env.PORT ? process.env.MONGO_URI_CLOUD : process.env.MONGO_URI_LOCAL
+
+    return mongoose.connect(MongoURI).then(() => {
 
         console.log('MongoDB Connected')
         // wait createAdminIfNotExist()
