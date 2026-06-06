@@ -1,14 +1,17 @@
 /* modules import */
 import mongoose from 'mongoose'
 
+/* helpers import */
+import createAdminIfNotExist from '../helpers/createAdmin.help.js'
+
 export default function mongoConnect() {
 
     const MongoURI = process.env.PORT ? process.env.MONGO_URI_CLOUD : process.env.MONGO_URI_LOCAL
 
-    return mongoose.connect(MongoURI).then(() => {
+    return mongoose.connect(MongoURI).then(async () => {
 
         console.log('MongoDB Connected')
-        // wait createAdminIfNotExist()
+        await createAdminIfNotExist()
 
     }).catch(err => console.log(`MongoDB Error: ${err}`))
 }
