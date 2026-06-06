@@ -18,5 +18,11 @@ const hdb = handlebars.create({
 app.engine('hdb', hdb.engine)
 app.set('view engine', 'hdb')
 
+/* controllers import */
+import * as appControllers from './controllers/app/app.controller.js'
+
+/* internal routes */
+app.get('/', appControllers.inicio)
+
 /* app listen */
 app.listen(process.env.PORT, () => console.log(`Server Fly - http://localhost:${process.env.PORT}`))
