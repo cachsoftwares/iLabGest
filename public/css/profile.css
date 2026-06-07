@@ -1,0 +1,21 @@
+section#profile--content #user-update--content button :is(span, i) {
+    transition: .3s ease;
+}
+
+section#profile--content #user-update--content button:hover span.has-icon-mask-32 {
+    background-color: var(--bulma-link-90);
+}
+
+section#profile--content #user-update--content button:hover span i,
+section#profile--content #user-update--content button:hover span:not(.has-icon-mask-32) {
+    color: var(--bulma-link) !important;
+}
+
+section#profile--content #user-update--content button:last-child:hover span.has-icon-mask-32 {
+    background-color: var(--bulma-warning-90);
+}
+
+section#profile--content #user-update--content button:last-child:hover span i,
+section#profile--content #user-update--content button:last-child:hover span:not(.has-icon-mask-32) {
+    color: var(--bulma-warning) !important;
+}

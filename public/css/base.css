@@ -6,5 +6,8 @@
 @import 'msg.css';
 @import 'footer.css';
 
+/* views */
+@import 'profile.css';
+
 /* customization */
 @import 'custom.css';
