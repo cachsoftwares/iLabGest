@@ -1,0 +1,31 @@
+<div class="column is-11-mobile is-8-tablet is-4-desktop">
+    <div class="box">
+        <canvas id="chartPieEquipamentosStatus"></canvas>
+    </div>
+</div>
+
+<script>
+
+    const chartPieEquipamentosStatus = document.querySelector('#chartPieEquipamentosStatus');
+
+    new Chart(chartPieEquipamentosStatus, {
+        type: 'pie',
+        data: {
+            labels: ["Bom", "Defeituoso"],
+            datasets: [{
+                label: '',
+                data: [10, 3],
+                borderWidth: 1,
+                backgroundColor: ['#777', '#f8f8f8']
+            }]
+        },
+        options: {
+            display: false,
+            scales: {
+                y: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
