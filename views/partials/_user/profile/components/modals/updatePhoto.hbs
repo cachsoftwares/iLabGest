@@ -1,0 +1,51 @@
+<div class="modal" id="user-update-photo--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Atualizar Foto</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/user/update/photo" method="post" id="user-update--form">
+
+                <div class="columns is-multiline">
+
+                    <div class="column is-12">
+                        <div id="input-photo--content" class="file has-name is-boxed is-centered">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="resume" accept="image/*" />
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="bx bx-cloud-upload bx-sm"></i>
+                                    </span>
+                                    <span class="file-label"> Escolha </span>
+                                </span>
+                                <span class="file-name has-text-centered"> {{user.photo}} </span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="user-update--form" class="button is-primary">Atualizar</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script>
+  const fileInput = document.querySelector("#input-photo--content input[type=file]");
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector("#input-photo--content .file-name");
+      fileName.textContent = fileInput.files[0].name;
+    }
+  };
+</script>

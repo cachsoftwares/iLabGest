@@ -1,0 +1,44 @@
+<div class="modal" id="user-update--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Atualizar Dados</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/user/update" method="post" id="user-update--form">
+
+                <div class="columns is-multiline">
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Nome Completo</label>
+                            <div class="control">
+                                <input name="updateName" id="updateName" class="input" type="text" placeholder="ex.: Maria Baptista" value="{{user.name}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Telfone</label>
+                            <div class="control">
+                                <input name="updateTel" id="updateTel" class="input" type="tel" placeholder="ex.: 923500500git " value="{{user.tel}}">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="user-update--form" class="button is-primary">Atualizar</button>
+            </div>
+        </footer>
+    </div>
+</div>

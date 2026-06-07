@@ -1,3 +1,4 @@
+/* user update */
 section#profile--content #user-update--content button :is(span, i) {
     transition: .3s ease;
 }

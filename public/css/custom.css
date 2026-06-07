@@ -1,22 +1,26 @@
-.is-height-full {
-    height: 100vh !important;
+.is-full-height {
+  height: 100vh !important;
+}
+
+.is-full-width {
+  width: 100% !important;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
 }
 
 main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .has-icon-content {
-    display: flex !important;
-    align-items: center !important;
-    gap: .3rem;
+  display: flex !important;
+  align-items: center !important;
+  gap: .3rem;
 }
 
 .mt-7 {

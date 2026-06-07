@@ -1,22 +1,26 @@
 <div id="user-update--content" class="box is-flex is-align-items-center is-justify-content-space-between">
-    <button class="is-flex is-flex-direction-column is-gap-1 is-align-items-center">
+    <button class="is-flex is-flex-direction-column is-gap-1 is-align-items-center js-modal-trigger" data-target="user-update--modal">
         <span class="has-icon-mask-32">
             <i class="bx bxs-pencil"></i>
         </span>
         <span class="is-size-7 has-text-weight-semibold has-text-grey">dados</span>
     </button>
 
-    <button class="is-flex is-flex-direction-column is-gap-1 is-align-items-center">
+    <button class="is-flex is-flex-direction-column is-gap-1 is-align-items-center js-modal-trigger" data-target="user-update-photo--modal">
         <span class="has-icon-mask-32">
             <i class="bx bxs-camera"></i>
         </span>
         <span class="is-size-7 has-text-weight-semibold has-text-grey">foto</span>
     </button>
 
-    <button class="is-flex is-flex-direction-column is-gap-1 is-align-items-center">
+    <button class="is-flex is-flex-direction-column is-gap-1 is-align-items-center js-modal-trigger" data-target="user-update-pwd--modal">
         <span class="has-icon-mask-32">
             <i class="bx bxs-shield"></i>
         </span>
         <span class="is-size-7 has-text-weight-semibold has-text-grey">senha</span>
     </button>
 </div>
+
+{{>_user/profile/components/modals/update}}
+{{>_user/profile/components/modals/updatePhoto}}
+{{>_user/profile/components/modals/updatePwd}}
