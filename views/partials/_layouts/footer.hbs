@@ -1,0 +1,109 @@
+<footer id="footer-page" class="mt-6">
+    <div class="container">
+        <div class="columns is-multiline">
+
+            <div class="column is-12-mobile is-3-tablet is-3-desktop">
+                <h3>iLabGest</h3>
+                <a href="#" class="has-icon-content">
+                    <i class="bx bx-info-circle"></i>
+                    <span>Sobre o iLabGest</span>
+                </a>
+                <a href="#" class="has-icon-content">
+                    <i class="bx bx-qr"></i>
+                    <span>Sobre o QRCode</span>
+                </a>
+            </div>
+
+            <div class="column is-12-mobile is-3-tablet is-3-desktop">
+                <h3>Navegação</h3>
+                <a href="/" class="has-icon-content">
+                    <i class="bx bx-bar-chart"></i>
+                    <span>Painel</span>
+                </a>
+
+                <a href="#" class="has-icon-content">
+                    <i class="bx bx-store"></i>
+                    <span>Laboratórios</span>
+                </a>
+
+                <a href="#" class="has-icon-content">
+                    <i class="bx bx-server"></i>
+                    <span>Equipamentos</span>
+                </a>
+
+                <a href="#" class="has-icon-content">
+                    <i class="bx bx-file"></i>
+                    <span>Inventários</span>
+                </a>
+            </div>
+
+            <div class="column is-12-mobile is-3-tablet is-3-desktop">
+                <h3>Institutos Afiliados</h3>
+                <a href="https://ipgest.uniluanda.ao/" class="has-icon-content">
+                    <i class="bx bx-buildings"></i>
+                    <span>IPGEST</span>
+                </a>
+                <a href="https://faartes.uniluanda.ao/" class="has-icon-content">
+                    <i class="bx bx-buildings"></i>
+                    <span>FaArtes</span>
+                </a>
+                <a href="https://fss.uniluanda.ao/" class="has-icon-content">
+                    <i class="bx bx-buildings"></i>
+                    <span>FSS</span>
+                </a>
+                <a href="https://instic.uniluanda.ao/" class="has-icon-content">
+                    <i class="bx bx-buildings"></i>
+                    <span>INSTIC</span>
+                </a>
+            </div>
+
+            <div class="column is-12-mobile is-3-tablet is-3-desktop">
+                <h3>Contato</h3>
+                {{!-- <div class="ministeries-logo mt-2 is-flex is-justify-content-center">
+                    <div class="icon_mask">
+                        <a href="#"><i class='bx bxl-instagram-alt bx-md'></i></a>
+                    </div>
+                    <div class="icon_mask">
+                        <a href="#"><i class='bx bxl-linkedin-square bx-md'></i></a>
+                    </div>
+                    <div class="icon_mask">
+                        <a href="#"><i class='bx bxl-facebook-square bx-md'></i></a>
+                    </div>
+                </div> --}}
+
+                <div class="contacts">
+                    <a href="mailto:apoioilabgest@gmail.com" class="has-icon-content">
+                        <i class="bx bxl-gmail"></i>
+                        <span>apoioilabgest@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="footer-bottom is-flex is-justify-content-center has-text-centered">
+            <p>
+                <span class="has-text-primary">
+                    <strong>
+                        &copy; <span id="createYear">2026</span> INSTIC
+                    </strong>
+                </span>
+                <br>
+                <span>Instituto Superior de Tecnologias de Informação de Comunicação</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    /* display date of creaction and current year */
+    if (document.querySelector('#createYear')) {
+        const createYear = document.querySelector('#createYear');
+        const currentYear = new Date().getFullYear();
+
+        if (createYear.textContent != currentYear) {
+            createYear.innerText += ` - ${currentYear}`;
+        }
+    }
+</script>

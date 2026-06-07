@@ -1,3 +1,20 @@
 .is-height-full {
     height: 100vh !important;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.has-icon-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: .3rem;
+}

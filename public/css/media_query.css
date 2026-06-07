@@ -12,29 +12,44 @@
 @media (min-width: 580px) and (max-width: 620px) {
 
     /* Ajustes entre mobile e tablet */
-
+    footer#footer-page {
+        background-size: contain !important;
+        background-position: bottom !important;
+    }
 }
 
 /* TABLET */
 @media (min-width: 600px) and (max-width: 899px) {
-    
+
     /* Estilos para tablet */
+    footer#footer-page {
+        background-size: contain !important;
+        background-position: bottom !important;
+    }
 
 }
 
 /* TRANSIÇÃO de TABLET para DESKTOP MÉDIO */
 @media (min-width: 880px) and (max-width: 920px) {
-    
-    /* Ajustes entre tablet e desktop médio */
 
+    /* Ajustes entre tablet e desktop médio */
+    footer#footer-page {
+        background-size: calc(920px * 1.2) !important;
+        background-position: bottom !important;
+    }
 }
 
 /* DESKTOP MÉDIO */
 @media (min-width: 900px) and (max-width: 1199px) {
 
     /* Estilos para desktop médio */
-    nav .navbar-menu .navbar-start > a.navbar-item i {
+    nav .navbar-menu .navbar-start>a.navbar-item i {
         display: none;
+    }
+
+    footer#footer-page {
+        background-size: calc(1199px * 1.2) !important;
+        background-position: bottom !important;
     }
 }
 
@@ -42,8 +57,13 @@
 @media (min-width: 1180px) and (max-width: 1220px) {
 
     /* Ajustes entre desktop médio e desktop largo */
-    nav .navbar-menu .navbar-start > a.navbar-item i {
+    nav .navbar-menu .navbar-start>a.navbar-item i {
         display: none;
+    }
+
+    footer#footer-page {
+        background-size: calc(1220px * 1.2) !important;
+        background-position: bottom !important;
     }
 }
 
@@ -51,7 +71,12 @@
 @media (min-width: 1200px) {
 
     /* Estilos para desktop largo */
-    nav .navbar-menu .navbar-start > a.navbar-item i {
+    nav .navbar-menu .navbar-start>a.navbar-item i {
         display: none;
+    }
+
+    footer#footer-page {
+        background-size: calc(1200px * 1.7) !important;
+        background-position: bottom !important;
     }
 }

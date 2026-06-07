@@ -1,0 +1,57 @@
+footer#footer-page {
+    background: linear-gradient(320deg, var(--footer-background-color), var(--footer-background-color)), url(/files/img/logo/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 3rem 1.5rem .5rem 1.5rem;
+    margin-top: 20vh !important;
+}
+
+footer#footer-page .column h3 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+footer#footer-page .column a {
+    display: block;
+    color: var(--bulma-text);
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+footer#footer-page .column a:hover,
+footer#footer-page .column .contacts a:hover {
+    color: var(--bulma-link);
+}
+
+footer#footer-page .social-icons {
+    display: flex;
+    justify-content: end;
+}
+
+footer#footer-page .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--bulma-text);
+    border-radius: 6px;
+    margin-right: 8px;
+    font-size: 1.5rem;
+    transition: background 0.3s;
+}
+
+footer#footer-page .app-buttons img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #7777771a;
+    padding-top: .3rem;
+    background: transparent !important;
+    font-size: 0.9rem;
+}
