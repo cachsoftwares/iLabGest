@@ -2,6 +2,7 @@
 node_modules/
 public/bulma/
 public/boxicons/
+public/files/img/users
 
 # Files
 .env

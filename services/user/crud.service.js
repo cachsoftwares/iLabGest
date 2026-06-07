@@ -3,7 +3,7 @@ import User from '../../models/user.model.js'
 
 export const update = (id, data) => {
 
-    User.findByIdAndUpdate(
+    return User.findByIdAndUpdate(
 
         {_id: id},
         {$set: data}
@@ -13,7 +13,7 @@ export const update = (id, data) => {
 
 export const updatePhoto = (id, photo) => {
 
-    User.findByIdAndUpdate(
+    return User.findByIdAndUpdate(
 
         {_id: id},
         {$set: {photo: photo}}
@@ -23,7 +23,7 @@ export const updatePhoto = (id, photo) => {
 
 export const updatePwd = (id, pwdHash) => {
 
-    User.findByIdAndUpdate(
+    return User.findByIdAndUpdate(
 
         {_id: id},
         {$set: {pwd: pwdHash}}

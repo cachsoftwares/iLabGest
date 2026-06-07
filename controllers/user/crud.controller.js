@@ -1,9 +1,11 @@
+/* modules import */
+import bcrypt from 'bcryptjs'
+
 /* services import */
 import * as UserServices from '../../services/user/crud.service.js'
 
 /* middlewares import */
 import * as error from '../../middlewares/error.middleware.js'
-import bcrypt from 'bcryptjs'
 
 export const updateUser = (req, res) => {
 
@@ -38,7 +40,7 @@ export const updateUser = (req, res) => {
 export const updateUserPhoto = (req, res) => {
 
     /* get foto */
-    const foto = req.body.updateUserPhoto
+    const foto = req.body.updatePhotoText
 
     /* validation */
     if (!foto || foto == null || foto == undefined) {
@@ -106,7 +108,7 @@ export const updateUserPwd = (req, res) => {
                         req.flash('info_msg', 'Dados Atualizados')
                         res.redirect('/user/profile')
 
-                    }).catch(err => error.internal(err, '/user/profile', true, false))
+                    }).catch(err => {error.internal(err, '/user/profile', true, false)})
                 })
 
             } else { wrongPwd('/user/profile', false) }
