@@ -1,1 +1,18 @@
-user card
+<div class="card">
+    <div class="card-image">
+        <figure class="image is-4by3">
+            <img src="/files/img/users/{{user.photo}}" alt="{{user.name}}" />
+        </figure>
+    </div>
+    <div class="card-content">
+        <div class="content">
+            <span class="is-size-4 has-text-weight-semibold has-text-primary">
+                {{user.name}}
+            </span>
+
+            <span class="tag is-medium mt-3 {{#if (eq user.role 'Administrador')}}is-dark{{/if}}">
+                {{user.role}}
+            </span>
+        </div>
+    </div>
+</div>

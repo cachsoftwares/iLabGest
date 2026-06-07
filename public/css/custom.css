@@ -18,3 +18,22 @@ main {
     align-items: center !important;
     gap: .3rem;
 }
+
+.mt-7 {
+  margin-top: 6rem !important;
+}
+
+.mt-8 {
+  margin-top: 12rem !important;
+}
+
+.has-icon-mask-32 {
+  width: 32px;
+  height: 32px;
+  background-color: var(--bulma-background);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
