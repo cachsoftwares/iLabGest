@@ -31,13 +31,22 @@ main {
   margin-top: 12rem !important;
 }
 
-.has-icon-mask-32 {
-  width: 32px;
-  height: 32px;
+.has-icon-mask-32,
+.has-icon-mask-64 {
   background-color: var(--bulma-background);
   border-radius: 50%;
-
+  
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.has-icon-mask-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.has-icon-mask-64 {
+  width: 64px;
+  height: 64px;
 }

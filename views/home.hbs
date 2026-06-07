@@ -1,1 +1,17 @@
-home.hbs
+<script src="/js/library/chart.js"></script>
+
+<section id="dashboard--content" class="container">
+
+    <div id="totals--content">
+
+        <div class="columns is-multiline is-centered">
+            {{>_employer/dashboard/componets/cards/totals/employers}}
+            {{>_employer/dashboard/componets/cards/totals/labs}}
+            {{>_employer/dashboard/componets/cards/totals/equipamentos}}
+            {{>_employer/dashboard/componets/cards/totals/inventarios}}
+        </div>
+        
+    </div>
+    <hr>
+
+</section>
