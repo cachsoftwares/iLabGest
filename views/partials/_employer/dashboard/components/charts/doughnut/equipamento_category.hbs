@@ -1,22 +1,22 @@
 <div class="column is-11-mobile is-8-tablet is-6-desktop">
     <div class="box">
-        <canvas id="chartPieEquipamentosStatus"></canvas>
+        <canvas id="chartDoughnutEquipamentosStatus"></canvas>
     </div>
 </div>
 
 <script>
 
-    const chartPieEquipamentosStatus = document.querySelector('#chartPieEquipamentosStatus');
+    const chartDoughnutEquipamentosStatus = document.querySelector('#chartDoughnutEquipamentosStatus');
 
-    new Chart(chartPieEquipamentosStatus, {
-        type: 'pie',
+    new Chart(chartDoughnutEquipamentosStatus, {
+        type: 'doughnut',
         data: {
-            labels: ["Bom", "Defeituoso"],
+            labels: ["Desktop", "Servidor", "Mouse"],
             datasets: [{
                 label: '',
-                data: [10, 3],
+                data: [10, 3, 16],
                 borderWidth: 1,
-                backgroundColor: ['#777', '#f8f8f8']
+                backgroundColor: ['#777', '#f8f8f8', '#d8d8d8']
             }]
         },
         options: {
