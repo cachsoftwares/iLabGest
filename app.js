@@ -74,8 +74,11 @@ app.use((req, res, next) => {
 /* controllers import */
 import * as appControllers from './controllers/app/app.controller.js'
 
+/* helpers import */
+import * as is from './helpers/mvc.help.js'
+
 /* internal routes */
-app.get('/', appControllers.home)
+app.get('/', is.authed, appControllers.home)
 
 /* external routes */
 import userRoutes from './routes/user/user.route.js'

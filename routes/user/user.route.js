@@ -26,16 +26,19 @@ var upload = multer({ storage: storage })
 import * as userControllers from '../../controllers/user/user.controller.js'
 import * as userCrudControllers from '../../controllers/user/crud.controller.js'
 
+/* helpers import */
+import * as is from '../../helpers/mvc.help.js'
+
 /* routes */
-router.get('/sign', userControllers.sign)
-router.post('/sign/in', userControllers.signin)
-router.post('/sign/out', userControllers.signout)
+router.get('/sign', is.unAuthed, userControllers.sign)
+router.post('/sign/in', is.unAuthed, userControllers.signin)
+router.post('/sign/out', is.authed, userControllers.signout)
 
-router.get('/profile', userControllers.profile)
+router.get('/profile', is.authed, userControllers.profile)
 
-router.post('/update', userCrudControllers.updateUser)
-router.post('/update/photo', upload.single('updatePhoto'), userCrudControllers.updateUserPhoto)
-router.post('/update/pwd', userCrudControllers.updateUserPwd)
+router.post('/update', is.authed, userCrudControllers.updateUser)
+router.post('/update/photo', is.authed, upload.single('updatePhoto'), userCrudControllers.updateUserPhoto)
+router.post('/update/pwd', is.authed, userCrudControllers.updateUserPwd)
 
 /* router export */
 export default router
