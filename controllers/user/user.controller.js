@@ -5,7 +5,7 @@ import passport from 'passport'
 import User from '../../models/user.model.js'
 
 /* middlewares import */
-import { internalError } from '../../middlewares/error.middleware.js'
+import { internal } from '../../middlewares/error.middleware.js'
 
 /* controllers */
 export const sign = (req, res) => {
@@ -30,7 +30,7 @@ export const signout = (req, res) => {
 
         if (err) {
 
-            internalError(err, '/user/profile', true, true)
+            internal(err, '/user/profile', true, true)
         }
 
         User.findByIdAndUpdate(
@@ -41,7 +41,7 @@ export const signout = (req, res) => {
             req.flash('info_msg', 'Conta Fechada')
             res.redirect('/user/sign')
 
-        }).catch(err => internalError(err, '/user/sign', true, false))
+        }).catch(err => internal(err, '/user/sign', true, false))
     })
 }
 
@@ -61,7 +61,7 @@ export const profile = async (req, res) => {
             res.render('user/profile')
             return
 
-        }).catch(err => internalError(err, '/', true, true))
+        }).catch(err => internal(err, '/', true, true))
     }
 
     res.render('user/profile')

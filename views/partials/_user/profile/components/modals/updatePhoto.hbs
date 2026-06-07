@@ -7,14 +7,14 @@
         </header>
 
         <section class="modal-card-body">
-            <form action="/user/update/photo" method="post" id="user-update--form">
+            <form action="/user/update/photo" method="post" id="user-update--form" enctype="multipart/form-data">
 
                 <div class="columns is-multiline">
 
                     <div class="column is-12">
                         <div id="input-photo--content" class="file has-name is-boxed is-centered">
                             <label class="file-label">
-                                <input class="file-input" type="file" name="resume" accept="image/*" />
+                                <input class="file-input" type="file" name="updatePhoto" accept="image/*" />
                                 <span class="file-cta">
                                     <span class="file-icon">
                                         <i class="bx bx-cloud-upload bx-sm"></i>
@@ -22,6 +22,7 @@
                                     <span class="file-label"> Escolha </span>
                                 </span>
                                 <span class="file-name has-text-centered"> {{user.photo}} </span>
+                                <input type="hidden" name="updatePhotoText" id="updatePhotoText">
                             </label>
                         </div>
                     </div>
@@ -45,7 +46,9 @@
   fileInput.onchange = () => {
     if (fileInput.files.length > 0) {
       const fileName = document.querySelector("#input-photo--content .file-name");
+      const fileNameInput = document.querySelector('input#updatePhotoText')
       fileName.textContent = fileInput.files[0].name;
+      fileNameInput.value = fileInput.files[0].name;
     }
   };
 </script>
