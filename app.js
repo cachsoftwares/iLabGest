@@ -82,8 +82,10 @@ app.get('/', is.authed, appControllers.home)
 
 /* external routes */
 import userRoutes from './routes/user/user.route.js'
+import adminEmployerRoutes from './routes/admin/employer.route.js'
 
 app.use('/user', userRoutes)
+app.use('/admin/employers', adminEmployerRoutes)
 
 /* app listen */
 const PORT = 3025 || process.env.PORT
