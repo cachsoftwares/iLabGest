@@ -1,24 +1,24 @@
-<div class="column is-11-mobile is-8-tablet is-3-desktop">
+<div class="column is-11-mobile is-6-tablet is-6-desktop">
     <div class="box">
-        <canvas id="chartDoughnutEquipamentosStatus"></canvas>
+        <canvas id="chartBarsLabsEquipamentos"></canvas>
     </div>
 </div>
 
 <script>
 
-    const chartDoughnutEquipamentosStatus = document.querySelector('#chartDoughnutEquipamentosStatus');
+    const chartBarsLabsEquipamentos = document.querySelector('#chartBarsLabsEquipamentos');
 
-    new Chart(chartDoughnutEquipamentosStatus, {
-        type: 'doughnut',
+    new Chart(chartBarsLabsEquipamentos, {
+        type: 'bar',
         data: {
-            labels: ["Desktop", "Servidor", "Mouse"],
+            labels: ["Lab1", "Lab2", "Lab3"],
             datasets: [{
-                label: '',
+                label: 'QTD Equip.',
                 data: [10, 3, 16],
                 borderWidth: 1,
                 backgroundColor: ['#777', '#f8f8f8', '#d8d8d8']
             }]
-        },
+        }/*,
         options: {
             display: false,
             scales: {
@@ -26,6 +26,6 @@
                     display: false
                 }
             }
-        }
+        }*/
     });
 </script>
