@@ -8,11 +8,50 @@
             {{>_user/profile/components/cards/update}}
         </div>
 
-        <div
-            class="column is-10-mobile is-offset-1-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-0-desktop">
-            {{#if (eq user.role 'Administrador')}}
-            admin dash
-            {{/if}}
+        {{!-- Dashboard --}}
+        <div class="column is-10-mobile is-offset-1-mobile is-10-tablet is-offset-1-tablet is-8-desktop is-offset-0-desktop">
+            <div class="columns">
+                <div class="column is-12-mobile">
+                    <div class="box">
+                        <div class="columns is-mobile is-multiline">
+                            {{#if (eq user.role 'Administrador')}}
+                            <div class="column is-12-mobile is-6-tablet is-4-desktop">
+                                <div class="box has-background-link-90 has-text-link-60">
+                                        <div class="is-flex is-flex-direction-column is-gap-2 is-align-items-center">
+                                            <i class="bx bx-user bx-md"></i>
+                                            <span class="has-text-weight-semibold is-size-7-mobile">Funcionários</span>
+                                        </div>
+                                </div>
+                            </div>
+                            {{/if}}
+                            <div class="column is-6-mobile is-6-tablet is-3-desktop">
+                                <div class="box has-background-info-90 has-text-info-50">
+                                    <div class="is-flex is-flex-direction-column is-gap-2 is-align-items-center">
+                                        <i class="bx bx-buildings bx-md"></i>
+                                        <span class="has-text-weight-semibold is-size-7-mobile">Laboratórios</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-6-mobile is-6-tablet is-3-desktop">
+                                <div class="box has-background-info-90 has-text-info-50">
+                                    <div class="is-flex is-flex-direction-column is-gap-2 is-align-items-center">
+                                        <i class="bx bx-server bx-md"></i>
+                                        <span class="has-text-weight-semibold is-size-7-mobile">Equipamentos</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column is-12-mobile is-6-tablet is-2-desktop">
+                                <div class="box has-background-info-90 has-text-info-50">
+                                    <div class="is-flex is-flex-direction-column is-gap-2 is-align-items-center">
+                                        <i class="bx bx-file bx-md"></i>
+                                        <span class="has-text-weight-semibold is-size-7-mobile">Inventários</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
