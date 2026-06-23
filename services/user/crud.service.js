@@ -6,7 +6,7 @@ import {internal} from '../../middlewares/error.middleware.js'
 
 export const create = (data) => {
 
-    return new User(data).catch(err => internal(err, false, false, false))
+    return new User(data).save().catch(err => internal(err, false, false, false))
 }
 
 export const update = (id, data) => {
