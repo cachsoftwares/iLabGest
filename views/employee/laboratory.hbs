@@ -1,1 +1,116 @@
-laboratory
+<section id="employers" class="section">
+
+    <div class="container">
+
+        <header>
+            <div class="is-flex is-align-items-center is-justify-content-space-between">
+
+                <h4 class="has-text-link title is-size-4-mobile">Gestão de Laboratórios</h4>
+
+                <button class="button is-small is-primary js-modal-trigger" data-target="laboratory-create--modal">
+                    <span class="is-hidden-desktop">
+                        <i class="bx bx-plus bx-sm"></i>
+                    </span>
+                    <span class="is-hidden-touch">
+                        Novo Laboratório
+                    </span>
+                </button>
+
+            </div>
+            <hr>
+        </header>
+
+        <div class="content">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Área</th>
+                        <th>Nº de Equipamentos</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{!-- {{#each laboratories}} --}}
+                    <tr>
+                        <td>ILab-1</td>
+                        <td>Informática</td>
+                        <td>64</td>
+                        <td>
+                            <div class="is-flex is-flex-wrap-wrap is-gap-1">
+                                <div>
+                                    <form action="/admin/employers/delete/{{_id}}" method="post">
+                                        <button type="submit" class="button is-ghost has-background-danger-90">
+                                            <i class="bx bx-trash has-text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {{!-- {{else}} --}}
+                    <tr>
+                        <td colspan="4" class="has-text-centered">Sem Laboratórios</td>
+                    </tr>
+                    {{!-- {{/each}} --}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="modal" id="laboratory-create--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Cadastar Laboratório</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/employee/laboratory/create" method="post" id="laboratory-create--form">
+
+                <div class="columns is-multiline">
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Título</label>
+                            <div class="control">
+                                <input name="createLaboratoyTitle" id="createLaboratoyTitle" class="input" type="text"
+                                    placeholder="ex.: ILab-1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label for="createLaboratoryArea" class="label">Área</label>
+                            <div class="select is-fullwidth">
+                                <select name="createLaboratoryArea" id="createLaboratoryArea">
+                                    <option value="Informática">Informática</option>
+                                    <option value="Telecomunicações">Telecomunicações</option>
+                                    <option value="Eletrónica">Eletrónica</option>
+                                    <option value="Programação">Programação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="laboratory-create--form" class="button is-primary">Cadastar</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="/js/components/modal.module.js"></script>

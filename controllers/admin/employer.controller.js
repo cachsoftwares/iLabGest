@@ -26,8 +26,8 @@ export const readEmployers = (req, res) => {
 export const createEmployer = async (req, res) => {
 
     const data = {
-        name: req.body.updateName,
-        tel: req.body.updateTel,
+        name: req.body.createEmployerName,
+        tel: req.body.createEmployerTel,
         pwd: 'instic2026'
     }
 
