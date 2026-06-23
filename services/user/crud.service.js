@@ -1,6 +1,14 @@
 /* models import */
 import User from '../../models/user.model.js'
 
+/* middleware imports */
+import {internal} from '../../middlewares/error.middleware.js'
+
+export const create = (data) => {
+
+    return new User(data).catch(err => internal(err, false, false, false))
+}
+
 export const update = (id, data) => {
 
     return User.findByIdAndUpdate(
@@ -8,7 +16,7 @@ export const update = (id, data) => {
         {_id: id},
         {$set: data}
 
-    ).catch(err => error.internal(err))
+    ).catch(err => internal(err, false, false, false))
 }
 
 export const updatePhoto = (id, photo) => {
@@ -18,7 +26,7 @@ export const updatePhoto = (id, photo) => {
         {_id: id},
         {$set: {photo: photo}}
 
-    ).catch(err => error.internal(err))
+    ).catch(err => internal(err, false, false, false))
 }
 
 export const updatePwd = (id, pwdHash) => {
@@ -28,5 +36,5 @@ export const updatePwd = (id, pwdHash) => {
         {_id: id},
         {$set: {pwd: pwdHash}}
 
-    ).catch(err => error.internal(err))
+    ).catch(err => internal(err, false, false, false))
 }

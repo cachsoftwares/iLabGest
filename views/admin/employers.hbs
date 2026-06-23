@@ -7,7 +7,7 @@
 
                 <h4 class="has-text-link title is-size-4-mobile">Gestão de Funcionários</h4>
 
-                <button class="button is-small is-primary">
+                <button class="button is-small is-primary js-modal-trigger" data-target="employer-create--modal">
                     <span class="is-hidden-desktop">
                         <i class="bx bx-plus bx-sm"></i>
                     </span>
@@ -67,3 +67,60 @@
     </div>
 
 </section>
+
+<div class="modal" id="employer-create--modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Cadastar Funcionário</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+
+        <section class="modal-card-body">
+            <form action="/admin/employer/create" method="post" id="employer-create--form">
+
+                <div class="columns is-multiline">
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Nome Completo</label>
+                            <div class="control">
+                                <input name="updateName" id="updateName" class="input" type="text" placeholder="ex.: Maria Baptista">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Telfone</label>
+                            <div class="control">
+                                <input name="updateTel" id="updateTel" class="input" type="tel" placeholder="ex.: 923500500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-12">
+                        <div class="field">
+                            <label class="label">Senha</label>
+                            <div class="control">
+                                <input name="updatePwd" id="updatePwd" class="input" type="text" value="instc2026" disabled>
+                            </div>
+                            <p class="is-size-6 has-text-warning-80 mt-2">Esta será a Senha do Funcionário, deverá atualizá-la</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="buttons is-full-width is-flex is-justify-content-space-between">
+                <button class="button">Cancelar</button>
+                <button type="submit" form="employer-create--form" class="button is-primary">Cadastar</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="/js/components/modal.module.js"></script>
