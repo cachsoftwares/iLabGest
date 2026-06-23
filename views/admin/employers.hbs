@@ -52,11 +52,13 @@
                         </td>
                         <td>
                             <div class="is-flex is-flex-wrap-wrap is-gap-1">
+                                <form action="/admin/employers/delete/{{_id}}" method="post">
+                                    <button type="submit" class="button is-ghost has-background-danger-90">
+                                        <i class="bx bx-trash has-text-danger"></i>
+                                    </button>
+                                </form>
                                 <button class="button is-ghost has-background-warning-90">
                                     <i class="bx bx-lock-alt has-text-warning"></i>
-                                </button>
-                                <button class="button is-ghost has-background-danger-90">
-                                    <i class="bx bx-trash has-text-danger"></i>
                                 </button>
                             </div>
                         </td>
@@ -91,7 +93,8 @@
                         <div class="field">
                             <label class="label">Nome Completo</label>
                             <div class="control">
-                                <input name="updateName" id="updateName" class="input" type="text" placeholder="ex.: Maria Baptista">
+                                <input name="updateName" id="updateName" class="input" type="text"
+                                    placeholder="ex.: Maria Baptista">
                             </div>
                         </div>
                     </div>
@@ -100,7 +103,8 @@
                         <div class="field">
                             <label class="label">Telfone</label>
                             <div class="control">
-                                <input name="updateTel" id="updateTel" class="input" type="tel" placeholder="ex.: 923500500">
+                                <input name="updateTel" id="updateTel" class="input" type="tel"
+                                    placeholder="ex.: 923500500">
                             </div>
                         </div>
                     </div>
@@ -109,9 +113,11 @@
                         <div class="field">
                             <label class="label">Senha</label>
                             <div class="control">
-                                <input name="updatePwd" id="updatePwd" class="input" type="text" value="instc2026" disabled>
+                                <input name="updatePwd" id="updatePwd" class="input" type="text" value="instc2026"
+                                    disabled>
                             </div>
-                            <p class="is-size-6 has-text-warning-80 mt-2">Esta será a Senha do Funcionário, deverá atualizá-la</p>
+                            <p class="is-size-6 has-text-warning-80 mt-2">Esta será a Senha do Funcionário, deverá
+                                atualizá-la</p>
                         </div>
                     </div>
 

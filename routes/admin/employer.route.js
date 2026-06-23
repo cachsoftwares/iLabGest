@@ -10,6 +10,7 @@ import * as employerController from '../../controllers/admin/employer.controller
 /* routes */
 router.get('/read', employerController.readEmployers)
 router.post('/create', employerController.createEmployer)
+router.post('/delete/:id', employerController.deleteEmployer)
 
 
 /* router export */
