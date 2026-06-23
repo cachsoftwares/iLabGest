@@ -1,3 +1,6 @@
+/* modules import */
+import bcrypt from 'bcryptjs'
+
 /* services import */
 import * as employerService from '../../services/employer.service.js'
 import { create as createEmployerService } from '../../services/user/crud.service.js'
@@ -10,19 +13,24 @@ export const readEmployers = (req, res) => {
 
     employerService.read().then((employers) => {
 
-        res.render('admin/employers', {employers})
+        res.render('admin/employers', { employers })
 
     }).catch(err => internal(err, '/user/profile', true, false))
 }
 
-export const createEmployer = (req, res) => {
+export const createEmployer = async (req, res) => {
 
     const data = {
-        nome: req.body.nome,
-        telefone: req.body.telefone,
+        name: req.body.updateName,
+        tel: req.body.updateTel,
+        pwd: 'instic2026'
     }
 
-    createEmployerService(data).then(() => {
+    data.pwd = await bcrypt.hash(data.pwd, 10)
+
+    console.log(data)
+
+    await createEmployerService(data).then(() => {
 
         req.flash('success_msg', 'Funcionário Cadastrado')
         res.redirect('/admin/employers/read')

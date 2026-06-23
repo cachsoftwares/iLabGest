@@ -32,22 +32,23 @@
                 </thead>
 
                 <tbody>
+                    {{#each employers}}
                     <tr>
                         <td>
                             <div class="is-flex is-align-items-center is-gap-2">
 
                                 <figure class="image is-32x32">
-                                    <img src="/files/img/users/ney.png" class="is-rounded">
+                                    <img src="/files/img/users/{{photo}}" class="is-rounded">
                                 </figure>
 
-                                <p>Ana Baptista</p>
+                                <p>{{name}}</p>
                             </div>
                         </td>
                         <td class="is-hidden-mobile">
-                            933132559
+                            {{tel}}
                         </td>
                         <td class="is-hidden-mobile">
-                            Online
+                            {{status}}
                         </td>
                         <td>
                             <div class="is-flex is-flex-wrap-wrap is-gap-1">
@@ -60,6 +61,11 @@
                             </div>
                         </td>
                     </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="4">Sem Funcionários</td>
+                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
         </div>

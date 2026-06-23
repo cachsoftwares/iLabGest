@@ -7,5 +7,8 @@ import { internal } from '../middlewares/error.middleware.js'
 /* services */
 export const read = () => {
 
-    return User.find().catch(err => internal(err))
+    return User
+        .find({role: 'Funcionário'})
+        .lean()
+        .catch(err => internal(err))
 }
