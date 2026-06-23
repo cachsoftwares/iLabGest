@@ -52,14 +52,30 @@
                         </td>
                         <td>
                             <div class="is-flex is-flex-wrap-wrap is-gap-1">
-                                <form action="/admin/employers/delete/{{_id}}" method="post">
-                                    <button type="submit" class="button is-ghost has-background-danger-90">
-                                        <i class="bx bx-trash has-text-danger"></i>
-                                    </button>
-                                </form>
-                                <button class="button is-ghost has-background-warning-90">
-                                    <i class="bx bx-lock-alt has-text-warning"></i>
-                                </button>
+                                <div>
+                                    <form action="/admin/employers/delete/{{_id}}" method="post">
+                                        <button type="submit" class="button is-ghost has-background-danger-90">
+                                            <i class="bx bx-trash has-text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                {{#if (eq status 'Bloqueado')}}
+                                <div>
+                                    <form action="/admin/employers/unblock/{{_id}}" method="post">
+                                        <button type="submit" class="button is-ghost has-background-warning-90">
+                                            <i class="bx bx-lock-open-alt has-text-warning"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                {{else}}
+                                <div>
+                                    <form action="/admin/employers/block/{{_id}}" method="post">
+                                        <button type="submit" class="button is-ghost has-background-warning-90">
+                                            <i class="bx bx-lock-alt has-text-warning"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                {{/if}}
                             </div>
                         </td>
                     </tr>

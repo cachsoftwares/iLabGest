@@ -45,3 +45,23 @@ export const delet = (id) => {
         .findOneAndDelete({ _id: id })
         .catch(err => internal(err, false, false, false))
 }
+
+export const block = (id) => {
+
+    return User.findByIdAndUpdate(
+
+        {_id: id},
+        {$set: {status: 'Bloqueado'}}
+
+    ).catch(err => internal(err, false, false, false))
+}
+
+export const unblock = (id) => {
+
+    return User.findByIdAndUpdate(
+
+        {_id: id},
+        {$set: {status: 'Offline'}}
+
+    ).catch(err => internal(err, false, false, false))
+}
