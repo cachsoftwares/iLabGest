@@ -27,3 +27,15 @@ export const createLaboratory = (req, res) => {
 
     }).catch(err => internal(err, '/employee/laboratory/read', true, false))
 }
+
+export const deleteLaboratory = (req, res) => {
+
+    const id = req.params.id
+
+    laboratoryService.delet(id).then(() => {
+
+        req.flash('success_msg', 'Laboratório Deletado')
+        res.redirect('/employee/laboratory/read')
+
+    }).catch(err => internal(err, '/employee/laboratory/read', true, false))
+}
