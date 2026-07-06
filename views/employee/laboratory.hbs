@@ -32,10 +32,10 @@
                 </thead>
 
                 <tbody>
-                    {{!-- {{#each laboratories}} --}}
+                    {{#each laboratories}}
                     <tr>
-                        <td>ILab-1</td>
-                        <td>Informática</td>
+                        <td>{{title}}</td>
+                        <td>{{area}}</td>
                         <td>64</td>
                         <td>
                             <div class="is-flex is-flex-wrap-wrap is-gap-1">
@@ -49,11 +49,11 @@
                             </div>
                         </td>
                     </tr>
-                    {{!-- {{else}} --}}
+                    {{else}}
                     <tr>
                         <td colspan="4" class="has-text-centered">Sem Laboratórios</td>
                     </tr>
-                    {{!-- {{/each}} --}}
+                    {{/each}}
                 </tbody>
             </table>
         </div>

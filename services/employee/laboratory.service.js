@@ -6,5 +6,12 @@ import { internal } from '../../middlewares/error.middleware.js'
 
 export const read = () => {
 
-    return Laboratory.find().catch(err => internal(err, false, false, false))
+    return Laboratory.find().lean().catch(err => internal(err, false, false, false))
+}
+
+export const create = (data) => {
+
+    return new Laboratory(data)
+        .save()
+        .catch(err => internal(err, false, false, false))
 }

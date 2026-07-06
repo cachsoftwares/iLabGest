@@ -12,3 +12,18 @@ export const readLaboratory = (req, res) => {
 
     }).catch(err => internal(err, '/employee/laboratory/read', true, false))
 }
+
+export const createLaboratory = (req, res) => {
+
+    const data = {
+        title: req.body.createLaboratoyTitle,
+        area: req.body.createLaboratoryArea
+    }
+
+    laboratoryService.create(data).then(() => {
+
+        req.flash('success_msg', 'Laboratório Cadastrado')
+        res.redirect('/employee/laboratory/read')
+
+    }).catch(err => internal(err, '/employee/laboratory/read', true, false))
+}

@@ -12,6 +12,7 @@ import * as laboratoryController from '../../controllers/employee/laboratory.con
 
 /* routes */
 router.get('/read', isEmployer, laboratoryController.readLaboratory)
+router.post('/create', isEmployer, laboratoryController.createLaboratory)
 
 /* router export */
 export default router
