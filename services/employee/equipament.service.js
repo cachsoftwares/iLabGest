@@ -12,3 +12,12 @@ export const read = () => {
         .lean()
         .catch(err => internal(err, false, false, false))
 }
+
+export const create = (data) => {
+
+    console.log('data do service', data)
+
+    return new Equipament(data)
+        .save()
+        .catch(err => internal(err, false, false, false))
+}

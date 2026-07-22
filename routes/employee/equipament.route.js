@@ -7,5 +7,6 @@ import * as equipamentController from '../../controllers/employee/equipament.con
 const router = Router()
 
 router.get('/read', equipamentController.readEquipament)
+router.post('/create', equipamentController.createEquipament)
 
 export default router

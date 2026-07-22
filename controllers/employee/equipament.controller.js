@@ -18,3 +18,29 @@ export const readEquipament = (req, res) => {
 
     }).catch(err => internal(err, '/user/profile', true, false))
 }
+
+export const createEquipament = (req, res) => {
+
+    const data = {
+        title: req.body.title,
+        status: req.body.status,
+        category: req.body.category,
+        price: req.body.price,
+        photo: req.body.photo,
+        supplier: req.body.supplier,
+        brand: req.body.brand,
+        note: req.body.note,
+        useFulLife: req.body.useFulLife,
+        'dates.purchaseDate': req.body.purchaseDate,
+        'dates.manufaturingDate': req.body.manufaturingDate,
+        laboratory: req.body.laboratory,
+        employee: req.user._id
+    }
+
+    return equipamentService.create(data).then(() => {
+
+        req.flash('success_msg', 'Equipamento Cadastrado')
+        res.redirect('/employee/equipament/read')
+
+    }).catch(err => internal(err, '/employee/equipament/create', true, false))
+}

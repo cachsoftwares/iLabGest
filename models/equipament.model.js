@@ -54,6 +54,10 @@ const EquipamentSchema = new mongoose.Schema({
     laboratory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Laboratory'
+    },
+    employee: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 
