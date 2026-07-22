@@ -21,3 +21,10 @@ export const create = (data) => {
         .save()
         .catch(err => internal(err, false, false, false))
 }
+
+export const delet = (id) => {
+
+    return Equipament
+        .findByIdAndDelete({_id: id})
+        .catch(err => internal(err, '/employee/equipament/read', false, false))
+}

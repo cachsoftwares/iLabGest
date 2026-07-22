@@ -21,42 +21,61 @@
         </header>
 
         <div class="content">
-            <table class="table is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {{#each equipaments}}
-                    <tr>
-                        <td>{{title}}</td>
-                        <td>
-                            <div class="is-flex is-flex-wrap-wrap is-gap-1">
-                                <div>
-                                    <form action="/employee/equipament/delete/{{_id}}" method="post">
-                                        <button type="submit" class="button is-ghost has-background-danger-90">
-                                            <i class="bx bx-trash has-text-danger"></i>
-                                        </button>
-                                    </form>
+            <div class="columns">
+                {{#each equipaments}}
+                <div class="column is-12-mobile is-4-tablet is-3-desktop">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://bulma.io/assets/images/placeholders/1280x960.png"
+                                    alt="Placeholder image" />
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="https://bulma.io/assets/images/placeholders/96x96.png"
+                                            alt="Placeholder image" />
+                                    </figure>
                                 </div>
-                                <div>
-                                    <button class="button is-ghost has-background-warning-90 js-modal-trigger" data-target="equipament-update--modal" onclick="equipamentUpdateSetData('{{_id}}', '{{title}}', '{{area}}')">
-                                        <i class="bx bx-pencil has-text-warning"></i>
-                                    </button>
+                                <div class="media-content">
+                                    <p class="title is-4">John Smith</p>
+                                    <p class="subtitle is-6">@johnsmith</p>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                    {{else}}
-                    <tr>
-                        <td colspan="4" class="has-text-centered">Sem Equipamentos</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+
+                            <div class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+                                iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+                                <a href="#">#responsive</a>
+                                <br />
+                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            </div>
+                        </div>
+                        <footer class="card-footer is-overflow-hidden">
+                            <a href="#" class="card-footer-item is-flex is-gap-1 is-clickable is-size-7">
+                                <i class="bx bxs-camera"></i>
+                                <span>Foto</span>
+                            </a>
+                            <a href="#" class="card-footer-item is-flex is-gap-1 is-clickable is-size-7">
+                                <i class="bx bxs-pencil"></i>
+                                <span>Dados</span>
+                            </a>
+                            <button form="equipament-delete--form" type="submit" class="card-footer-item is-flex is-gap-1 is-clickable is-size-7 has-background-danger-90 has-text-danger-50">
+                                <i class="bx bxs-trash"></i>
+                                <span>Del.</span>
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+                <div class="is-hidden">
+                    <form id="equipament-delete--form" action="/employee/equipament/delete/{{_id}}" method="post"></form>
+                </div>
+                {{else}}
+                <p class="has-text-centered is-full-width has-text-info">Sem Equipamentos</p>
+                {{/each}}
+            </div>
         </div>
 
     </div>
@@ -158,7 +177,8 @@
                         <div class="field">
                             <label class="label" for="createEquipamentManufaturingDate">Fabrico</label>
                             <div class="control">
-                                <input name="manufaturingDate" id="createEquipamentManufaturingDate" class="input" max="2026" type="number" placeholder="ex.: 2015">
+                                <input name="manufaturingDate" id="createEquipamentManufaturingDate" class="input"
+                                    max="2026" type="number" placeholder="ex.: 2015">
                             </div>
                         </div>
                     </div>
@@ -167,7 +187,8 @@
                         <div class="field">
                             <label class="label" for="createEquipamentUseFulLife">Vida Útil</label>
                             <div class="control">
-                                <input name="useFulLife" id="createEquipamentUseFulLife" class="input" min="1" type="number" placeholder="ex.: 3 anos">
+                                <input name="useFulLife" id="createEquipamentUseFulLife" class="input" min="1"
+                                    type="number" placeholder="ex.: 3 anos">
                             </div>
                         </div>
                     </div>
@@ -191,7 +212,8 @@
                         <div class="field">
                             <label class="label" for="createEquipamentNote">Anotações</label>
                             <div class="control">
-                                <textarea class="textarea" name="note" id="createEquipamentNote" placeholder="ex.: escreve o que julga importante"></textarea>
+                                <textarea class="textarea" name="note" id="createEquipamentNote"
+                                    placeholder="ex.: escreve o que julga importante"></textarea>
                             </div>
                         </div>
                     </div>

@@ -11,5 +11,6 @@ const router = Router()
 
 router.get('/read', isEmployee, equipamentController.readEquipament)
 router.post('/create', isEmployee, equipamentController.createEquipament)
+router.post('/delete/:id', isEmployee, equipamentController.deleteEquipament)
 
 export default router

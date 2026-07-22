@@ -44,3 +44,15 @@ export const createEquipament = (req, res) => {
 
     }).catch(err => internal(err, '/employee/equipament/create', true, false))
 }
+
+export const deleteEquipament = (req, res) => {
+
+    const id = req.params.id
+
+    equipamentService.delet(id).then(() => {
+
+        req.flash('success_msg', 'Equipamento Deletado')
+        res.redirect('/employee/equipament/read')
+
+    }).catch(err => internal(err, '/employee/equipament/read', true, false))
+}
