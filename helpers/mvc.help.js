@@ -14,7 +14,7 @@ export const unAuthed = (req, res, next) => {
     res.redirect('/user/profile')
 }
 
-export const employer = (req, res, next) => {
+export const employee = (req, res, next) => {
 
     if (req.isAuthenticated() && (req.user.role == 'Funcionário' || req.user.role == 'Administrador')) { return next() }
 

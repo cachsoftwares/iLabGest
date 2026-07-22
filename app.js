@@ -82,12 +82,12 @@ app.get('/', is.authed, appControllers.home)
 
 /* external routes */
 import userRoutes from './routes/user/user.route.js'
-import adminEmployerRoutes from './routes/admin/employer.route.js'
+import adminEmployeeRoutes from './routes/admin/employee.route.js'
 import employeeLaboratoryRoutes from './routes/employee/laboratory.route.js'
 import employeeEquipamentRoutes from './routes/employee/equipament.route.js'
 
 app.use('/user', userRoutes)
-app.use('/admin/employers', adminEmployerRoutes)
+app.use('/admin/employees', adminEmployeeRoutes)
 app.use('/employee/laboratory', employeeLaboratoryRoutes)
 app.use('/employee/equipament', employeeEquipamentRoutes)
 

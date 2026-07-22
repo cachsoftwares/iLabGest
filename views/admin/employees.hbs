@@ -1,4 +1,4 @@
-<section id="employers" class="section">
+<section id="employees" class="section">
 
     <div class="container">
 
@@ -7,7 +7,7 @@
 
                 <h4 class="has-text-link title is-size-4-mobile">Gestão de Funcionários</h4>
 
-                <button class="button is-small is-primary js-modal-trigger" data-target="employer-create--modal">
+                <button class="button is-small is-primary js-modal-trigger" data-target="employee-create--modal">
                     <span class="is-hidden-desktop">
                         <i class="bx bx-plus bx-sm"></i>
                     </span>
@@ -32,7 +32,7 @@
                 </thead>
 
                 <tbody>
-                    {{#each employers}}
+                    {{#each employees}}
                     <tr>
                         <td>
                             <div class="is-flex is-align-items-center is-gap-2">
@@ -53,7 +53,7 @@
                         <td>
                             <div class="is-flex is-flex-wrap-wrap is-gap-1">
                                 <div>
-                                    <form action="/admin/employers/delete/{{_id}}" method="post">
+                                    <form action="/admin/employees/delete/{{_id}}" method="post">
                                         <button type="submit" class="button is-ghost has-background-danger-90">
                                             <i class="bx bx-trash has-text-danger"></i>
                                         </button>
@@ -61,7 +61,7 @@
                                 </div>
                                 {{#if (eq status 'Bloqueado')}}
                                 <div>
-                                    <form action="/admin/employers/unblock/{{_id}}" method="post">
+                                    <form action="/admin/employees/unblock/{{_id}}" method="post">
                                         <button type="submit" class="button is-ghost has-background-warning-90">
                                             <i class="bx bx-lock-open-alt has-text-warning"></i>
                                         </button>
@@ -69,7 +69,7 @@
                                 </div>
                                 {{else}}
                                 <div>
-                                    <form action="/admin/employers/block/{{_id}}" method="post">
+                                    <form action="/admin/employees/block/{{_id}}" method="post">
                                         <button type="submit" class="button is-ghost has-background-warning-90">
                                             <i class="bx bx-lock-alt has-text-warning"></i>
                                         </button>
@@ -92,7 +92,7 @@
 
 </section>
 
-<div class="modal" id="employer-create--modal">
+<div class="modal" id="employee-create--modal">
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
@@ -101,7 +101,7 @@
         </header>
 
         <section class="modal-card-body">
-            <form action="/admin/employers/create" method="post" id="employer-create--form">
+            <form action="/admin/employees/create" method="post" id="employee-create--form">
 
                 <div class="columns is-multiline">
 
@@ -109,7 +109,7 @@
                         <div class="field">
                             <label class="label">Nome Completo</label>
                             <div class="control">
-                                <input name="createEmployerName" id="createEmployerName" class="input" type="text"
+                                <input name="createEmployeeName" id="createEmployeeName" class="input" type="text"
                                     placeholder="ex.: Maria Baptista">
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="field">
                             <label class="label">Telfone</label>
                             <div class="control">
-                                <input name="createEmployerTel" id="createEmployerTel" class="input" type="tel"
+                                <input name="createEmployeeTel" id="createEmployeeTel" class="input" type="tel"
                                     placeholder="ex.: 923500500">
                             </div>
                         </div>
@@ -145,7 +145,7 @@
         <footer class="modal-card-foot">
             <div class="buttons is-full-width is-flex is-justify-content-space-between">
                 <button class="button">Cancelar</button>
-                <button type="submit" form="employer-create--form" class="button is-primary">Cadastar</button>
+                <button type="submit" form="employee-create--form" class="button is-primary">Cadastar</button>
             </div>
         </footer>
     </div>

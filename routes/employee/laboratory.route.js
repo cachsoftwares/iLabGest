@@ -5,16 +5,16 @@ import {Router} from 'express'
 const router = Router()
 
 /* helpers import */
-import { employer as isEmployer } from '../../helpers/mvc.help.js'
+import { employee as isEmployee } from '../../helpers/mvc.help.js'
 
 /* controllers import */
 import * as laboratoryController from '../../controllers/employee/laboratory.controller.js'
 
 /* routes */
-router.get('/read', isEmployer, laboratoryController.readLaboratory)
-router.post('/create', isEmployer, laboratoryController.createLaboratory)
-router.post('/delete/:id', isEmployer, laboratoryController.deleteLaboratory)
-router.post('/update', isEmployer, laboratoryController.updateLaboratory)
+router.get('/read', isEmployee, laboratoryController.readLaboratory)
+router.post('/create', isEmployee, laboratoryController.createLaboratory)
+router.post('/delete/:id', isEmployee, laboratoryController.deleteLaboratory)
+router.post('/update', isEmployee, laboratoryController.updateLaboratory)
 
 /* router export */
 export default router
