@@ -21,7 +21,8 @@ const EquipamentSchema = new mongoose.Schema({
         required: true
     },
     photo: {
-        type: String/*,
+        type: String,
+        default: 'equipament-default.png'/*,
         required: true*/
     },
     supplier: {

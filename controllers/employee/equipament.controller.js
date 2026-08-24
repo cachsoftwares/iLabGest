@@ -3,7 +3,7 @@ import * as equipamentService from '../../services/employee/equipament.service.j
 import { read as laboratoriesRead } from '../../services/employee/laboratory.service.js'
 
 /* middlewares import */
-import { internal } from '../../middlewares/error.middleware.js'
+import { internal, fillFields } from '../../middlewares/error.middleware.js'
 
 /* controllers */
 export const readEquipament = (req, res) => {
@@ -55,4 +55,54 @@ export const deleteEquipament = (req, res) => {
         res.redirect('/employee/equipament/read')
 
     }).catch(err => internal(err, '/employee/equipament/read', true, false))
+}
+
+export const updateEquipament = (req, res) => {
+
+    const id = req.body.updateEquipamentId
+
+    const data = {
+        title: req.body.updateEquipamentTitle,
+        status: req.body.updateEquipamentStatus,
+        category: req.body.updateEquipamentCategory,
+        price: req.body.updateEquipamentPrice,
+        supplier: req.body.updateEquipamentSupplier,
+        brand: req.body.updateEquipamentBrand,
+        note: req.body.updateEquipamentNote,
+        useFulLife: req.body.updateEquipamentUseFulLife,
+        'dates.purchaseDate': req.body.updateEquipamentPurchaseDate,
+        'dates.manufaturingDate': req.body.updateEquipamentManufaturingDate,
+        laboratory: req.body.updateEquipamentLaboratory
+    }
+
+    equipamentService.update(id, data).then(() => {
+
+        req.flash('success_msg', 'Equipamento Atualizado')
+        res.redirect('/employee/equipament/read')
+
+    }).catch(err => internal(err, '/employee/equipament/read', true, false))
+}
+
+export const updateEquipamentPhoto = (req, res) => {
+
+    const id = req.body.updateEquipamentId
+
+    /* get foto */
+    const foto = req.body.updateEquipamentPhotoText
+
+    /* validation */
+    if (!foto || foto == null || foto == undefined) {
+
+        fillFields('/employee/equipament/read', true)
+
+    } else {
+
+        /* call service */
+        equipamentService.updatePhoto(id, foto).then(() => {
+
+            req.flash('info_msg', 'Foto Atualizada')
+            res.redirect('/employee/equipament/read')
+
+        }).catch(err => internal(err, '/employee/equipament/read', true, false))
+    }
 }
