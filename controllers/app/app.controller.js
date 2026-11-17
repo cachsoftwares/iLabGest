@@ -1,5 +1,13 @@
-/* controllers */
-export const home = (req, res) => {
+import { count as countInventories } from '../../services/employee/inventory.service.js'
 
-    res.render('home')
+/* controllers */
+export const home = async (req, res) => {
+
+    const inventoryCount = await countInventories()
+    res.render('home', { inventoryCount })
+}
+
+export const about = (req, res) => {
+
+    res.render('about')
 }

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+export const equipamentStatuses = ['Novo', 'Bom', 'Reciclado', 'Defeituoso', 'Inoperante']
+
 const EquipamentSchema = new mongoose.Schema({
 
     title: {
@@ -8,7 +10,7 @@ const EquipamentSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Novo', 'Bom', 'Reciclado', 'Defeituoso', 'Inoperante'],
+        enum: equipamentStatuses,
         default: 'Novo'
     },
     category: {

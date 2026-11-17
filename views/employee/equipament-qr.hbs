@@ -1,0 +1,63 @@
+<style>
+    .equipment-qr-label {
+        width: min(100%, 28rem);
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid var(--bulma-border);
+        border-radius: var(--bulma-radius-large);
+        text-align: center;
+    }
+
+    .equipment-qr-label img {
+        display: block;
+        width: min(100%, 20rem);
+        margin: 1rem auto;
+    }
+
+    @media print {
+        body {
+            display: block !important;
+            height: auto !important;
+        }
+
+        body > header,
+        #footer-page,
+        .no-print {
+            display: none !important;
+        }
+
+        main.mt-7 {
+            margin-top: 0 !important;
+        }
+
+        .equipment-qr-label {
+            border: 0;
+            box-shadow: none;
+        }
+    }
+</style>
+
+<section class="section">
+    <div class="container">
+        <article class="equipment-qr-label box">
+            <p class="heading">iLabGest · Identificação do equipamento</p>
+            <h1 class="title is-4">{{equipament.title}}</h1>
+            <p class="subtitle is-6">{{equipament.category}}</p>
+            <img src="/employee/equipament/qr/{{equipament._id}}.svg"
+                alt="Código QR de {{equipament.title}}">
+            <p class="is-size-7">Leia este código no check-in de um inventário.</p>
+        </article>
+        <div class="has-text-centered no-print">
+            <button type="button" class="button is-primary" onclick="window.print()">
+                <span class="icon"><i class="bx bx-printer"></i></span>
+                <span>Imprimir etiqueta</span>
+            </button>
+            <a href="/employee/equipament/qr/{{equipament._id}}.png"
+                download="qrcode-equipamento-{{equipament._id}}.png" class="button is-link is-light">
+                <span class="icon"><i class="bx bx-download"></i></span>
+                <span>Exportar PNG</span>
+            </a>
+            <a href="/employee/equipament/read" class="button is-light">Voltar</a>
+        </div>
+    </div>
+</section>

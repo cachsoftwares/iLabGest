@@ -1,0 +1,266 @@
+<style>
+    @media print {
+        @page {
+            size: A4;
+            margin: 14mm;
+        }
+
+        body {
+            display: block !important;
+            height: auto !important;
+        }
+
+        body > header,
+        #footer-page,
+        .no-print {
+            display: none !important;
+        }
+
+        main.mt-7 {
+            margin-top: 0 !important;
+        }
+
+        main > section {
+            padding: 0 !important;
+        }
+
+        .container {
+            width: 100% !important;
+            max-width: none !important;
+        }
+
+        .box,
+        .notification {
+            box-shadow: none !important;
+            break-inside: avoid;
+        }
+
+        .table-container {
+            overflow: visible !important;
+        }
+
+        tr {
+            break-inside: avoid;
+        }
+    }
+</style>
+
+<section class="section">
+    <div class="container">
+        <div class="is-flex is-flex-wrap-wrap is-align-items-center is-justify-content-space-between mb-5">
+            <div>
+                <a href="/employee/inventory/read" class="is-size-7 no-print">
+                    <i class="bx bx-left-arrow-alt"></i> Voltar aos inventários
+                </a>
+                <h1 class="title is-3 mt-2">Relatório de inventário</h1>
+                <p class="subtitle is-6">Iniciado em {{inventory.startedAtLabel}}</p>
+            </div>
+            <div class="buttons no-print">
+                {{#if (eq inventory.status 'Em curso')}}
+                <button type="button" class="button is-primary is-light js-modal-trigger"
+                    data-target="inventory-qr-scanner-modal">
+                    <span class="icon"><i class="bx bx-qr-scan"></i></span>
+                    <span>Ler QR Code</span>
+                </button>
+                {{/if}}
+                <button type="button" class="button is-link is-light"
+                    data-pdf-filename="{{inventory.pdfFileName}}" onclick="exportInventoryPdf(this)">
+                    <span class="icon"><i class="bx bxs-file-pdf"></i></span>
+                    <span>Exportar PDF</span>
+                </button>
+                {{#if (eq inventory.status 'Em curso')}}
+                <form action="/employee/inventory/{{inventory._id}}/close" method="post">
+                    <button type="submit" class="button is-primary">
+                        <span class="icon"><i class="bx bx-check"></i></span>
+                        <span>Concluir inventário</span>
+                    </button>
+                </form>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="columns is-multiline mb-4">
+            <div class="column is-12-mobile is-4-tablet">
+                <div class="box">
+                    <p class="heading">Estado</p>
+                    {{#if (eq inventory.status 'Em curso')}}
+                    <p class="title is-5"><span class="tag is-warning is-light">Em curso</span></p>
+                    {{else}}
+                    <p class="title is-5"><span class="tag is-success is-light">Concluído</span></p>
+                    <p class="is-size-7">Concluído em {{inventory.completedAtLabel}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="column is-12-mobile is-4-tablet">
+                <div class="box">
+                    <p class="heading">Responsável</p>
+                    <p class="title is-5">{{inventory.employee.name}}</p>
+                    <p class="is-size-7">{{inventory.employee.tel}}</p>
+                </div>
+            </div>
+            <div class="column is-12-mobile is-4-tablet">
+                <div class="box">
+                    <p class="heading">Equipamentos conferidos</p>
+                    <p class="title is-5">{{inventory.checkedInCount}} / {{inventory.items.length}}</p>
+                    <p class="is-size-7">{{inventory.unverifiedCount}} não conferido(s)</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="box mb-5">
+            <h2 class="title is-5">Laboratórios incluídos</h2>
+            <div class="tags">
+                {{#each inventory.laboratories}}
+                <span class="tag is-info is-light">{{title}} — {{area}}</span>
+                {{/each}}
+            </div>
+        </section>
+
+        {{#if (eq inventory.status 'Em curso')}}
+        <div class="modal" id="inventory-qr-scanner-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Check-in por QR Code</p>
+                    <button type="button" class="delete" aria-label="Fechar"></button>
+                </header>
+                <section class="modal-card-body">
+                    <p class="mb-4">
+                        Escolha o estado de conservação e aponte a câmara para a etiqueta do equipamento.
+                        O check-in será registado assim que o código for lido.
+                    </p>
+
+                    <form id="inventory-qr-checkin-form" action="/employee/inventory/{{inventory._id}}/checkin/qr" method="post">
+                        <input type="hidden" name="qrValue" id="inventory-qr-value">
+                        <div class="field">
+                            <label class="label" for="inventory-qr-status">Estado de conservação</label>
+                            <div class="control select is-fullwidth">
+                                <select name="status" id="inventory-qr-status" required>
+                                    <option value="" selected disabled>Selecione o estado observado</option>
+                                    <option value="Novo">Novo</option>
+                                    <option value="Bom">Bom</option>
+                                    <option value="Reciclado">Reciclado</option>
+                                    <option value="Defeituoso">Defeituoso</option>
+                                    <option value="Inoperante">Inoperante</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="inventory-qr-note">Nota (opcional)</label>
+                            <div class="control">
+                                <input class="input" type="text" name="note" id="inventory-qr-note" maxlength="500">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="inventory-qr-message" class="notification is-info is-light" role="status" aria-live="polite">
+                        A iniciar a câmara...
+                    </div>
+                    <div id="inventory-qr-reader" class="is-flex is-justify-content-center"></div>
+                    <p class="help mt-3">
+                        Permita o acesso à câmara quando o navegador pedir. A câmara requer HTTPS ou acesso por localhost.
+                    </p>
+                </section>
+                <footer class="modal-card-foot">
+                    <button type="button" class="button is-light">Fechar</button>
+                </footer>
+            </div>
+        </div>
+        {{/if}}
+
+        {{#if (eq inventory.status 'Em curso')}}
+        <script defer src="/vendor/html5-qrcode/html5-qrcode.min.js"></script>
+        <script defer src="/js/components/modal.module.js"></script>
+        <script defer src="/js/components/inventory-qr.module.js"></script>
+        {{/if}}
+
+        <script>
+            function exportInventoryPdf(button) {
+                const previousTitle = document.title
+                document.title = button.dataset.pdfFilename
+                window.addEventListener('afterprint', () => {
+                    document.title = previousTitle
+                }, { once: true })
+                window.print()
+            }
+        </script>
+
+        {{#if (eq inventory.status 'Em curso')}}
+        <div class="notification is-info is-light no-print">
+            Faça o check-in individual dos equipamentos encontrados. Os que ficarem sem check-in
+            serão apresentados como <strong>não conferidos</strong> e não terão o estado alterado.
+        </div>
+        {{/if}}
+
+        <section>
+            <h2 class="title is-4">Equipamentos</h2>
+            <div class="table-container">
+                <table class="table is-fullwidth is-striped">
+                    <thead>
+                        <tr>
+                            <th>Equipamento</th>
+                            <th>Categoria</th>
+                            <th>Laboratório</th>
+                            <th>Estado no início</th>
+                            <th>Conferência</th>
+                            <th class="no-print">Check-in</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each inventory.items}}
+                        <tr>
+                            <td>{{title}}</td>
+                            <td>{{category}}</td>
+                            <td>{{laboratoryTitle}}</td>
+                            <td>{{statusAtStart}}</td>
+                            <td>
+                                {{#if checkedIn}}
+                                <span class="tag is-success is-light">Conferido</span>
+                                <strong>{{statusAtCheckIn}}</strong>
+                                <br>
+                                <span class="is-size-7">{{checkedInAtLabel}}</span>
+                                {{#if note}}
+                                <br><span class="is-size-7">{{note}}</span>
+                                {{/if}}
+                                {{else}}
+                                <span class="tag is-warning is-light">Não conferido</span>
+                                {{/if}}
+                            </td>
+                            <td class="no-print">
+                                {{#if (eq ../inventory.status 'Em curso')}}
+                                {{#unless checkedIn}}
+                                <form action="/employee/inventory/{{../inventory._id}}/checkin" method="post"
+                                    class="is-flex is-flex-direction-column is-gap-2">
+                                    <input type="hidden" name="itemId" value="{{_id}}">
+                                    <div class="select is-small is-fullwidth">
+                                        <select name="status" required>
+                                            <option value="Novo" {{#if (eq statusAtStart 'Novo')}}selected{{/if}}>Novo</option>
+                                            <option value="Bom" {{#if (eq statusAtStart 'Bom')}}selected{{/if}}>Bom</option>
+                                            <option value="Reciclado" {{#if (eq statusAtStart 'Reciclado')}}selected{{/if}}>Reciclado</option>
+                                            <option value="Defeituoso" {{#if (eq statusAtStart 'Defeituoso')}}selected{{/if}}>Defeituoso</option>
+                                            <option value="Inoperante" {{#if (eq statusAtStart 'Inoperante')}}selected{{/if}}>Inoperante</option>
+                                        </select>
+                                    </div>
+                                    <input class="input is-small" type="text" name="note" maxlength="500"
+                                        placeholder="Nota (opcional)">
+                                    <button type="submit" class="button is-small is-primary">
+                                        Confirmar check-in
+                                    </button>
+                                </form>
+                                {{/unless}}
+                                {{/if}}
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td colspan="6" class="has-text-centered has-text-grey">
+                                Não há equipamentos registados nos laboratórios selecionados.
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
