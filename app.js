@@ -8,6 +8,7 @@ import bodyParser from 'body-parser'
 import session from 'express-session'
 import passport from 'passport'
 import flash from 'connect-flash'
+// import flash from 'connect-flash'
 
 /* app config */
 const app = express()
