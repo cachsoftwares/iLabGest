@@ -29,6 +29,9 @@ import { employee as isEmployee } from '../../helpers/mvc.help.js'
 import * as equipamentController from '../../controllers/employee/equipament.controller.js'
 
 router.get('/read', isEmployee, equipamentController.readEquipament)
+router.get('/qr/:id.svg', isEmployee, equipamentController.readEquipamentQrSvg)
+router.get('/qr/:id.png', isEmployee, equipamentController.downloadEquipamentQrPng)
+router.get('/:id/qr', isEmployee, equipamentController.readEquipamentQr)
 router.post('/create', isEmployee, equipamentController.createEquipament)
 router.post('/delete/:id', isEmployee, equipamentController.deleteEquipament)
 router.post('/update', isEmployee, equipamentController.updateEquipament)

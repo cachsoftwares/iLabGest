@@ -1,0 +1,174 @@
+<style>
+    .inventory-lab-option {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        min-height: 5rem;
+        gap: 1rem;
+        padding: 1rem 1.125rem;
+        border: 1px solid var(--bulma-border);
+        border-radius: var(--bulma-radius-large);
+        background: var(--bulma-scheme-main);
+        cursor: pointer;
+        transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .inventory-lab-option:hover {
+        border-color: var(--bulma-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 0.5rem 1.25rem rgb(10 10 10 / 8%);
+    }
+
+    .inventory-lab-option:has(.inventory-lab-checkbox:checked) {
+        border-color: var(--bulma-primary);
+        background: color-mix(in srgb, var(--bulma-primary) 8%, var(--bulma-scheme-main));
+        box-shadow: 0 0 0 1px var(--bulma-primary);
+    }
+
+    .inventory-lab-checkbox {
+        display: grid;
+        flex: 0 0 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        margin: 0;
+        appearance: none;
+        place-content: center;
+        border: 1.5px solid var(--bulma-border);
+        border-radius: 0.375rem;
+        background: var(--bulma-scheme-main);
+        cursor: pointer;
+        transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .inventory-lab-checkbox::before {
+        width: 0.65rem;
+        height: 0.36rem;
+        border: solid var(--bulma-primary-invert);
+        border-width: 0 0 2px 2px;
+        content: "";
+        transform: rotate(-45deg) scale(0);
+        transition: transform 120ms ease-in-out;
+    }
+
+    .inventory-lab-checkbox:checked {
+        border-color: var(--bulma-primary);
+        background: var(--bulma-primary);
+    }
+
+    .inventory-lab-checkbox:checked::before {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    .inventory-lab-checkbox:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--bulma-primary) 35%, transparent);
+        outline-offset: 3px;
+    }
+
+    .inventory-lab-option__details {
+        min-width: 0;
+        line-height: 1.4;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .inventory-lab-option,
+        .inventory-lab-checkbox,
+        .inventory-lab-checkbox::before {
+            transition: none;
+        }
+    }
+</style>
+
+<section class="section">
+    <div class="container">
+        <header class="mb-5">
+            <h1 class="title is-3 has-text-link">Inventários</h1>
+            <p class="subtitle is-6">
+                Cada inventário é uma sessão de conferência. Selecione os laboratórios,
+                faça o check-in equipamento a equipamento e conclua a sessão para guardar o relatório.
+            </p>
+        </header>
+
+        {{#if hasLaboratories}}
+        <section class="box mb-6">
+            <h2 class="title is-5">Iniciar inventário</h2>
+            <p class="mb-4">Selecione um ou mais laboratórios para incluir todos os seus equipamentos nesta sessão.</p>
+
+            <form action="/employee/inventory/create" method="post">
+                <div class="columns is-multiline">
+                    {{#each laboratories}}
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop">
+                        <label class="inventory-lab-option">
+                            <input class="inventory-lab-checkbox" type="checkbox" name="laboratories" value="{{_id}}" required>
+                            <span class="inventory-lab-option__details">
+                                <strong>{{title}}</strong>
+                                <br>
+                                <span class="is-size-7 has-text-grey">{{area}}</span>
+                            </span>
+                        </label>
+                    </div>
+                    {{/each}}
+                </div>
+                <button type="submit" class="button is-primary">
+                    <span class="icon"><i class="bx bx-play"></i></span>
+                    <span>Iniciar sessão</span>
+                </button>
+            </form>
+        </section>
+        {{else}}
+        <div class="notification is-warning is-light">
+            <p>É necessário registar pelo menos um laboratório antes de iniciar um inventário.</p>
+            <a href="/employee/laboratory/read" class="button is-warning is-light mt-3">Ir para Laboratórios</a>
+        </div>
+        {{/if}}
+
+        <section>
+            <h2 class="title is-4">Sessões de inventário</h2>
+            <div class="table-container">
+                <table class="table is-fullwidth is-striped is-hoverable">
+                    <thead>
+                        <tr>
+                            <th>Início</th>
+                            <th>Laboratórios</th>
+                            <th>Responsável</th>
+                            <th>Estado</th>
+                            <th>Conferidos</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each inventories}}
+                        <tr>
+                            <td>{{startedAtLabel}}</td>
+                            <td>
+                                {{#each laboratories}}
+                                <span class="tag is-light mb-1">{{title}}</span>
+                                {{/each}}
+                            </td>
+                            <td>{{employee.name}}</td>
+                            <td>
+                                {{#if (eq status 'Em curso')}}
+                                <span class="tag is-warning is-light">Em curso</span>
+                                {{else}}
+                                <span class="tag is-success is-light">Concluído</span>
+                                {{/if}}
+                            </td>
+                            <td>{{checkedInCount}} / {{items.length}}</td>
+                            <td>
+                                <a href="/employee/inventory/{{_id}}" class="button is-small is-link is-light">
+                                    Abrir relatório
+                                </a>
+                            </td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td colspan="6" class="has-text-centered has-text-grey">
+                                Ainda não há sessões de inventário.
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>

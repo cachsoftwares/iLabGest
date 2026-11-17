@@ -2,7 +2,14 @@
 **Sistema de Gestão de Ativos dos Laboratórios do INSTIC via QRCode.**
 
 ## Guia das Funcionalidades
-_Ainda não disponível_
+### Inventários
+Cada inventário é uma sessão que pode incluir um ou vários laboratórios. Durante a sessão, faça o check-in individual dos equipamentos encontrados e registe o respetivo estado de conservação. O estado atual do equipamento é atualizado no registo.
+
+Ao concluir a sessão manualmente, os equipamentos sem check-in permanecem como **não conferidos**; não são automaticamente marcados como desaparecidos. O relatório pode ser exportado pela opção **Exportar PDF** (na janela de impressão do navegador, escolha guardar como PDF). O nome sugerido inclui a data de início da sessão no formato `Inventario-DD-MM-AAAA`.
+
+Cada cartão de equipamento tem o botão **Exibir QR Code**, que abre o código num modal com a opção **Exportar PNG**. A opção **QR** abre também uma etiqueta imprimível. Para fazer check-in por QR Code, num inventário em curso escolha **Ler QR Code**, permita o acesso à câmara, selecione o estado de conservação observado e aponte a câmara para a etiqueta. O check-in é registado automaticamente após a leitura. A câmara só funciona em contexto seguro: HTTPS em produção ou `localhost` durante o desenvolvimento.
+
+Na gestão de equipamentos, marque os itens desejados ou use **Selecionar todos** e **Desselecionar todos**. **Exportar selecionados em PDF** abre a impressão do navegador; escolha guardar como PDF. Cada código QR ocupa 1 × 1 polegada e é acompanhado pelo nome e categoria do equipamento. O nome sugerido inclui a data no formato `Codigos-QR-DD-MM-AAAA`.
 
 
 ## Usar a Versão Hospedada (online)
@@ -89,6 +96,7 @@ _Ainda não disponível_
         MONGO_URI_LOCAL = 'mongodb://localhost/ilabgest'
         MONGO_URI_CLOUD = '<uri-mongo-cloud>'
         ADMIN_PWD = '<senha-admin>'
+        SEED_EMPLOYEE_PWD = '<senha-funcionario>'
         SESSION_SECRET = '<session-secret>'
     - Poderá obter o contúdo da variável `MONGO_URI_CLOUD` criando um banco de dados em nuvem em `https://atlas.mongodb.com`.
     - Poderá usar uma senha ao seu critério para a variável `ADMIN_PWD`.
@@ -99,6 +107,7 @@ _Ainda não disponível_
         - ```bash
             MONGO_URI_LOCAL = 'mongodb://localhost/ilabgest'
             ADMIN_PWD = 'senha@admin2026'
+            SEED_EMPLOYEE_PWD = 'senha-funcionario'
             SESSION_SECRET = '20262027202820292030'
         - A ausência da variável `MONGO_URI_CLOUD` não compromete a execução do Projeto na sua máquina.
 
@@ -121,6 +130,14 @@ _Ainda não disponível_
     - Isto vai executar o Servidor da Aplicação e Retornar a Mensagem `Server Fly - localhost:3025`, `MongoDB Connected` e `Admin created` se for a primeira vez e/ou não haver um Administrador Cadastrado no Banco de Dados
 4. Abra o seu Navegador (FireFox, Chrome, Brave, etc) e digite no endereço de pesquisa `localhost:3025`
 
+### Popular as Coleções com Dados de Demonstração
+Depois de configurar o ficheiro `.env`, execute na raiz do projeto:
+
+```bash
+npm run seed
+```
+
+O seeder cria um administrador e um funcionário de demonstração caso ainda não existam, e insere laboratórios, equipamentos associados e uma sessão de inventário de exemplo. Defina `ADMIN_PWD` e `SEED_EMPLOYEE_PWD` no `.env` para as senhas dessas contas. É seguro executá-lo mais de uma vez: não apaga nem substitui dados existentes, e completa os vínculos em falta nos equipamentos de demonstração.
 
 
 ### Mangendo o Banco de Dados

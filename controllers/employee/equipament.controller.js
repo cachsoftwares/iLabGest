@@ -1,3 +1,8 @@
+import mongoose from 'mongoose'
+import QRCode from 'qrcode'
+import Equipament from '../../models/equipament.model.js'
+import { equipmentQrPayload } from '../../helpers/equipment-qr.help.js'
+
 /* services import */
 import * as equipamentService from '../../services/employee/equipament.service.js'
 import { read as laboratoriesRead } from '../../services/employee/laboratory.service.js'
@@ -17,6 +22,52 @@ export const readEquipament = (req, res) => {
         }).catch(err => internal(err, '/user/profile', true, false))
 
     }).catch(err => internal(err, '/user/profile', true, false))
+}
+
+export const readEquipamentQr = async (req, res) => {
+    if (!mongoose.isValidObjectId(req.params.id)) return res.sendStatus(404)
+
+    const equipament = await Equipament
+        .findById(req.params.id)
+        .select('title category')
+        .lean()
+
+    if (!equipament) return res.sendStatus(404)
+    res.render('employee/equipament-qr', { equipament })
+}
+
+export const readEquipamentQrSvg = async (req, res) => {
+    if (!mongoose.isValidObjectId(req.params.id)) return res.sendStatus(404)
+
+    const equipament = await Equipament.findById(req.params.id).select('_id').lean()
+    if (!equipament) return res.sendStatus(404)
+
+    const svg = await QRCode.toString(equipmentQrPayload(equipament._id), {
+        type: 'svg',
+        errorCorrectionLevel: 'M',
+        margin: 2,
+        width: 320
+    })
+
+    res.type('image/svg+xml').send(svg)
+}
+
+export const downloadEquipamentQrPng = async (req, res) => {
+    if (!mongoose.isValidObjectId(req.params.id)) return res.sendStatus(404)
+
+    const equipament = await Equipament.findById(req.params.id).select('_id').lean()
+    if (!equipament) return res.sendStatus(404)
+
+    const png = await QRCode.toBuffer(equipmentQrPayload(equipament._id), {
+        type: 'png',
+        errorCorrectionLevel: 'M',
+        margin: 2,
+        width: 640
+    })
+
+    res.type('image/png')
+        .set('Content-Disposition', `attachment; filename="qrcode-equipamento-${equipament._id}.png"`)
+        .send(png)
 }
 
 export const createEquipament = (req, res) => {

@@ -1,3 +1,67 @@
+<style>
+    .equipment-qr-modal-image {
+        display: block;
+        width: min(100%, 22rem);
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .equipment-qr-print-sheet {
+        display: none;
+    }
+
+    @media print {
+        @page {
+            size: A4;
+            margin: 0.5in;
+        }
+
+        body {
+            display: block !important;
+            height: auto !important;
+        }
+
+        body > :not(main) {
+            display: none !important;
+        }
+
+        main.mt-7 {
+            margin-top: 0 !important;
+        }
+
+        main.mt-7 > * {
+            display: none !important;
+        }
+
+        main.mt-7 > #equipment-qr-print-sheet {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1.25in);
+            gap: 0.15in;
+            align-content: start;
+        }
+
+        .equipment-qr-print-item {
+            width: 1.25in;
+            text-align: center;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .equipment-qr-print-item img {
+            display: block;
+            width: 1in !important;
+            height: 1in !important;
+            margin: 0 auto;
+        }
+
+        .equipment-qr-print-item p {
+            margin-top: 0.04in;
+            font-size: 8pt;
+            overflow-wrap: anywhere;
+        }
+    }
+</style>
+
 <section id="equipaments" class="section">
 
     <div class="container">
@@ -17,13 +81,31 @@
                 </button>
 
             </div>
+            <div class="buttons mt-4 no-print">
+                <button type="button" class="button is-light" id="equipment-qr-select-all">
+                    <span class="icon"><i class="bx bx-check-square"></i></span>
+                    <span>Selecionar todos</span>
+                </button>
+                <button type="button" class="button is-light" id="equipment-qr-deselect-all">
+                    <span class="icon"><i class="bx bx-square"></i></span>
+                    <span>Desselecionar todos</span>
+                </button>
+                <button type="button" class="button is-link" id="equipment-qr-export-pdf" disabled>
+                    <span class="icon"><i class="bx bxs-file-pdf"></i></span>
+                    <span>Exportar selecionados em PDF</span>
+                </button>
+                <span class="tag is-info is-light" id="equipment-qr-selection-count">0 selecionados</span>
+            </div>
+            <p class="notification is-info is-light no-print is-hidden" id="equipment-qr-export-status"
+                role="status" aria-live="polite"></p>
             <hr>
         </header>
 
         <div class="content">
             <div class="columns">
                 {{#each equipaments}}
-                <div class="column is-12-mobile is-4-tablet is-3-desktop">
+                <div class="column is-12-mobile is-4-tablet is-3-desktop" data-equipment-card
+                    data-equipment-id="{{_id}}" data-equipment-title="{{title}}" data-equipment-category="{{category}}">
                     <div class="card">
                         <div class="card-image">
                             <figure class="image">
@@ -35,6 +117,10 @@
                             <div class="content">
                                 <div class="is-size-5 has-text-weight-bold">{{title}}</div>
                             </div>
+                            <label class="checkbox no-print mb-3">
+                                <input type="checkbox" class="equipment-qr-selection" value="{{_id}}">
+                                Selecionar para PDF
+                            </label>
 
                             <div class="media">
                                 <div class="media-left">
@@ -48,6 +134,14 @@
                                     <div class="tag is-small">{{employee.tel}}</div>
                                 </div>
                             </div>
+
+                            <div class="has-text-centered mt-4">
+                                <button type="button" class="button is-small is-link is-light js-modal-trigger"
+                                    data-target="equipament-qr-modal-{{_id}}">
+                                    <span class="icon"><i class="bx bx-qr"></i></span>
+                                    <span>Exibir QR Code</span>
+                                </button>
+                            </div>
                         </div>
                         <footer class="card-footer is-overflow-hidden">
                             <a href="#" class="card-footer-item is-flex is-gap-1 is-clickable is-size-7 js-modal-trigger" data-target="equipament-update-photo--modal" onclick="equipamentUpdatePhotoSetData('{{_id}}')">
@@ -57,6 +151,11 @@
                             <a href="#" class="card-footer-item is-flex is-gap-1 is-clickable is-size-7 js-modal-trigger" data-target="equipament-update--modal" onclick="equipamentUpdateSetData('{{_id}}', '{{title}}', '{{status}}', '{{category}}', '{{price}}', '{{supplier}}', '{{brand}}', '{{note}}', '{{useFulLife}}', '{{dates.purchaseDate}}', '{{dates.manufaturingDate}}', '{{laboratory}}')">
                                 <i class="bx bxs-pencil"></i>
                                 <span>Dados</span>
+                            </a>
+                            <a href="/employee/equipament/{{_id}}/qr" target="_blank" rel="noopener"
+                                class="card-footer-item is-flex is-gap-1 is-clickable is-size-7">
+                                <i class="bx bx-qr"></i>
+                                <span>QR</span>
                             </a>
                             <button form="equipament-delete--form" type="submit" class="card-footer-item is-flex is-gap-1 is-clickable is-size-7 has-text-danger">
                                 <i class="bx bxs-trash"></i>
@@ -68,6 +167,30 @@
                 <div class="is-hidden">
                     <form id="equipament-delete--form" action="/employee/equipament/delete/{{_id}}" method="post"></form>
                 </div>
+                <div class="modal" id="equipament-qr-modal-{{_id}}" role="dialog" aria-modal="true"
+                    aria-labelledby="equipament-qr-title-{{_id}}">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title" id="equipament-qr-title-{{_id}}">QR Code · {{title}}</p>
+                            <button type="button" class="delete" aria-label="Fechar"></button>
+                        </header>
+                        <section class="modal-card-body has-text-centered">
+                            <img class="equipment-qr-modal-image"
+                                src="/employee/equipament/qr/{{_id}}.svg"
+                                alt="Código QR de {{title}}" loading="lazy">
+                            <p class="help mt-3">Use este código para identificar o equipamento durante o inventário.</p>
+                        </section>
+                        <footer class="modal-card-foot">
+                            <a href="/employee/equipament/qr/{{_id}}.png"
+                                download="qrcode-equipamento-{{_id}}.png" class="button is-link is-light">
+                                <span class="icon"><i class="bx bx-download"></i></span>
+                                <span>Exportar PNG</span>
+                            </a>
+                            <button type="button" class="button is-light">Fechar</button>
+                        </footer>
+                    </div>
+                </div>
                 {{else}}
                 <p class="has-text-centered is-full-width has-text-info">Sem Equipamentos</p>
                 {{/each}}
@@ -77,6 +200,8 @@
     </div>
 
 </section>
+
+<section id="equipment-qr-print-sheet" class="equipment-qr-print-sheet" aria-hidden="true"></section>
 
 <div class="modal" id="equipament-create--modal">
     <div class="modal-background"></div>
@@ -481,3 +606,4 @@
 </script>
 
 <script src="/js/components/modal.module.js"></script>
+<script src="/js/components/equipament-qr-export.module.js"></script>

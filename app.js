@@ -35,6 +35,7 @@ const __dirname = path.dirname(__filename)
 
 /* static files */
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/vendor/html5-qrcode', express.static(path.join(__dirname, 'node_modules', 'html5-qrcode')))
 
 /* mongodb connect */
 import mongoConnect from './helpers/database.help.js'
@@ -79,17 +80,20 @@ import * as is from './helpers/mvc.help.js'
 
 /* internal routes */
 app.get('/', is.authed, appControllers.home)
+app.get('/about', appControllers.about)
 
 /* external routes */
 import userRoutes from './routes/user/user.route.js'
 import adminEmployeeRoutes from './routes/admin/employee.route.js'
 import employeeLaboratoryRoutes from './routes/employee/laboratory.route.js'
 import employeeEquipamentRoutes from './routes/employee/equipament.route.js'
+import employeeInventoryRoutes from './routes/employee/inventory.route.js'
 
 app.use('/user', userRoutes)
 app.use('/admin/employees', adminEmployeeRoutes)
 app.use('/employee/laboratory', employeeLaboratoryRoutes)
 app.use('/employee/equipament', employeeEquipamentRoutes)
+app.use('/employee/inventory', employeeInventoryRoutes)
 
 /* app listen */
 const PORT = 3025 || process.env.PORT
