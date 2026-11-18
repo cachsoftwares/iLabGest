@@ -21,6 +21,9 @@ const hdb = handlebars.create({
     helpers: {
         eq: function(a, b) {
             return a === b
+        },
+        json: function(value) {
+            return JSON.stringify(value)
         }
     },
     defaultLayout: 'main',

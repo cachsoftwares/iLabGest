@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import Equipament from '../models/equipament.model.js'
-import Inventory from '../models/inventory.model.js'
 import Laboratory from '../models/laboratory.model.js'
 import User from '../models/user.model.js'
 
@@ -10,7 +9,17 @@ dotenv.config()
 
 const laboratoryData = [
     { title: 'Laboratório de Informática 1', area: 'Bloco A - 1.º andar' },
-    { title: 'Laboratório de Redes', area: 'Bloco B - 2.º andar' }
+    { title: 'Laboratório de Informática 2', area: 'Bloco A - 2.º andar' },
+    { title: 'Laboratório de Redes', area: 'Bloco B - 2.º andar' },
+    { title: 'Laboratório de Electrónica', area: 'Bloco B - 1.º andar' },
+    { title: 'Laboratório de Programação', area: 'Bloco C - Rés-do-chão' },
+    { title: 'Laboratório de Multimédia', area: 'Bloco C - 1.º andar' }
+]
+
+const employeeData = [
+    { name: 'Funcionário de Demonstração', tel: '923200200' },
+    { name: 'Maria Domingos', tel: '923300300' },
+    { name: 'João Baptista', tel: '923400400' }
 ]
 
 const equipamentData = [
@@ -21,13 +30,34 @@ const equipamentData = [
         price: 450000,
         supplier: 'Tecnologia Angola',
         brand: 'Dell',
-        note: 'Equipamento de demonstração',
         useFulLife: 5,
-        dates: {
-            purchaseDate: new Date('2024-01-15T00:00:00.000Z'),
-            manufaturingDate: 2023
-        },
-        laboratoryTitle: 'Laboratório de Informática 1'
+        dates: { purchaseDate: new Date('2024-01-15T00:00:00.000Z'), manufaturingDate: 2023 },
+        laboratoryTitle: 'Laboratório de Informática 1',
+        employeeTel: '923200200'
+    },
+    {
+        title: 'Computador Desktop 02',
+        status: 'Novo',
+        category: 'Desktop',
+        price: 480000,
+        supplier: 'Tecnologia Angola',
+        brand: 'HP',
+        useFulLife: 5,
+        dates: { purchaseDate: new Date('2025-02-12T00:00:00.000Z'), manufaturingDate: 2024 },
+        laboratoryTitle: 'Laboratório de Informática 2',
+        employeeTel: '923300300'
+    },
+    {
+        title: 'Computador Desktop 03',
+        status: 'Defeituoso',
+        category: 'Desktop',
+        price: 410000,
+        supplier: 'Info Kwanza',
+        brand: 'Lenovo',
+        useFulLife: 5,
+        dates: { purchaseDate: new Date('2022-09-08T00:00:00.000Z'), manufaturingDate: 2022 },
+        laboratoryTitle: 'Laboratório de Programação',
+        employeeTel: '923400400'
     },
     {
         title: 'Computador Laptop 01',
@@ -36,13 +66,34 @@ const equipamentData = [
         price: 620000,
         supplier: 'Tecnologia Angola',
         brand: 'Lenovo',
-        note: 'Equipamento de demonstração',
         useFulLife: 5,
-        dates: {
-            purchaseDate: new Date('2025-03-10T00:00:00.000Z'),
-            manufaturingDate: 2025
-        },
-        laboratoryTitle: 'Laboratório de Informática 1'
+        dates: { purchaseDate: new Date('2025-03-10T00:00:00.000Z'), manufaturingDate: 2025 },
+        laboratoryTitle: 'Laboratório de Informática 1',
+        employeeTel: '923200200'
+    },
+    {
+        title: 'Computador Laptop 02',
+        status: 'Bom',
+        category: 'Laptop',
+        price: 590000,
+        supplier: 'Info Kwanza',
+        brand: 'Dell',
+        useFulLife: 5,
+        dates: { purchaseDate: new Date('2024-05-22T00:00:00.000Z'), manufaturingDate: 2024 },
+        laboratoryTitle: 'Laboratório de Multimédia',
+        employeeTel: '923300300'
+    },
+    {
+        title: 'Computador Laptop 03',
+        status: 'Inoperante',
+        category: 'Laptop',
+        price: 550000,
+        supplier: 'Tecnologia Angola',
+        brand: 'HP',
+        useFulLife: 4,
+        dates: { purchaseDate: new Date('2021-11-03T00:00:00.000Z'), manufaturingDate: 2021 },
+        laboratoryTitle: 'Laboratório de Electrónica',
+        employeeTel: '923400400'
     },
     {
         title: 'Router de Rede 01',
@@ -51,13 +102,22 @@ const equipamentData = [
         price: 180000,
         supplier: 'Redes & Sistemas',
         brand: 'TP-Link',
-        note: 'Equipamento de demonstração',
         useFulLife: 4,
-        dates: {
-            purchaseDate: new Date('2024-06-20T00:00:00.000Z'),
-            manufaturingDate: 2024
-        },
-        laboratoryTitle: 'Laboratório de Redes'
+        dates: { purchaseDate: new Date('2024-06-20T00:00:00.000Z'), manufaturingDate: 2024 },
+        laboratoryTitle: 'Laboratório de Redes',
+        employeeTel: '923200200'
+    },
+    {
+        title: 'Router de Rede 02',
+        status: 'Novo',
+        category: 'Router',
+        price: 260000,
+        supplier: 'Redes & Sistemas',
+        brand: 'Cisco',
+        useFulLife: 6,
+        dates: { purchaseDate: new Date('2025-07-14T00:00:00.000Z'), manufaturingDate: 2025 },
+        laboratoryTitle: 'Laboratório de Redes',
+        employeeTel: '923300300'
     },
     {
         title: 'Monitor 01',
@@ -66,15 +126,84 @@ const equipamentData = [
         price: 95000,
         supplier: 'Tecnologia Angola',
         brand: 'HP',
-        note: 'Equipamento de demonstração',
         useFulLife: 4,
-        dates: {
-            purchaseDate: new Date('2023-02-05T00:00:00.000Z'),
-            manufaturingDate: 2022
-        },
-        laboratoryTitle: 'Laboratório de Redes'
+        dates: { purchaseDate: new Date('2023-02-05T00:00:00.000Z'), manufaturingDate: 2022 },
+        laboratoryTitle: 'Laboratório de Redes',
+        employeeTel: '923400400'
+    },
+    {
+        title: 'Monitor 02',
+        status: 'Bom',
+        category: 'Monitor',
+        price: 110000,
+        supplier: 'Info Kwanza',
+        brand: 'Samsung',
+        useFulLife: 5,
+        dates: { purchaseDate: new Date('2024-08-19T00:00:00.000Z'), manufaturingDate: 2024 },
+        laboratoryTitle: 'Laboratório de Informática 2',
+        employeeTel: '923200200'
+    },
+    {
+        title: 'Monitor 03',
+        status: 'Novo',
+        category: 'Monitor',
+        price: 130000,
+        supplier: 'Tecnologia Angola',
+        brand: 'LG',
+        useFulLife: 5,
+        dates: { purchaseDate: new Date('2025-09-01T00:00:00.000Z'), manufaturingDate: 2025 },
+        laboratoryTitle: 'Laboratório de Multimédia',
+        employeeTel: '923300300'
+    },
+    {
+        title: 'Teclado 01',
+        status: 'Bom',
+        category: 'Teclado',
+        price: 15000,
+        supplier: 'Info Kwanza',
+        brand: 'Logitech',
+        useFulLife: 3,
+        dates: { purchaseDate: new Date('2024-03-27T00:00:00.000Z'), manufaturingDate: 2024 },
+        laboratoryTitle: 'Laboratório de Programação',
+        employeeTel: '923400400'
+    },
+    {
+        title: 'Teclado 02',
+        status: 'Defeituoso',
+        category: 'Teclado',
+        price: 12000,
+        supplier: 'Tecnologia Angola',
+        brand: 'Microsoft',
+        useFulLife: 3,
+        dates: { purchaseDate: new Date('2023-04-11T00:00:00.000Z'), manufaturingDate: 2023 },
+        laboratoryTitle: 'Laboratório de Informática 1',
+        employeeTel: '923200200'
+    },
+    {
+        title: 'Mouse 01',
+        status: 'Novo',
+        category: 'Mouse',
+        price: 8000,
+        supplier: 'Info Kwanza',
+        brand: 'Logitech',
+        useFulLife: 3,
+        dates: { purchaseDate: new Date('2025-10-06T00:00:00.000Z'), manufaturingDate: 2025 },
+        laboratoryTitle: 'Laboratório de Electrónica',
+        employeeTel: '923300300'
+    },
+    {
+        title: 'Mouse 02',
+        status: 'Reciclado',
+        category: 'Mouse',
+        price: 6500,
+        supplier: 'Tecnologia Angola',
+        brand: 'HP',
+        useFulLife: 2,
+        dates: { purchaseDate: new Date('2022-12-15T00:00:00.000Z'), manufaturingDate: 2022 },
+        laboratoryTitle: 'Laboratório de Programação',
+        employeeTel: '923400400'
     }
-]
+].map(equipament => ({ note: 'Equipamento de demonstração', ...equipament }))
 
 async function seedUser(filter, data, password) {
     return User.findOneAndUpdate(
@@ -114,15 +243,16 @@ async function seed() {
         },
         process.env.ADMIN_PWD
     )
-    const employee = await seedUser(
-        { tel: '923200200' },
-        {
-            name: 'Funcionário de Demonstração',
-            tel: '923200200',
-            role: 'Funcionário'
-        },
-        process.env.SEED_EMPLOYEE_PWD
-    )
+
+    const employees = new Map()
+    for (const data of employeeData) {
+        const employee = await seedUser(
+            { tel: data.tel },
+            { ...data, role: 'Funcionário' },
+            process.env.SEED_EMPLOYEE_PWD
+        )
+        employees.set(data.tel, employee)
+    }
 
     const laboratories = new Map()
     for (const data of laboratoryData) {
@@ -134,80 +264,32 @@ async function seed() {
         laboratories.set(data.title, laboratory)
     }
 
-    const seededEquipamentIds = []
-    for (const { laboratoryTitle, ...data } of equipamentData) {
+    for (const { laboratoryTitle, employeeTel, ...data } of equipamentData) {
+        const laboratoryId = laboratories.get(laboratoryTitle)._id
+        const employeeId = employees.get(employeeTel)._id
+
         const equipament = await Equipament.findOneAndUpdate(
             { title: data.title, supplier: data.supplier },
             {
                 $setOnInsert: {
                     ...data,
-                    laboratory: laboratories.get(laboratoryTitle)._id,
-                    employee: employee._id
+                    laboratory: laboratoryId,
+                    employee: employeeId
                 }
             },
             { upsert: true, new: true, setDefaultsOnInsert: true }
         )
-        seededEquipamentIds.push(equipament._id)
 
         const missingLinks = {}
-        if (!equipament.employee) missingLinks.employee = employee._id
-        if (!equipament.laboratory) {
-            missingLinks.laboratory = laboratories.get(laboratoryTitle)._id
-        }
+        if (!equipament.employee) missingLinks.employee = employeeId
+        if (!equipament.laboratory) missingLinks.laboratory = laboratoryId
         if (Object.keys(missingLinks).length > 0) {
             await Equipament.updateOne({ _id: equipament._id }, { $set: missingLinks })
         }
     }
 
-    const seedStartedAt = new Date('2026-01-15T08:00:00.000Z')
-    const existingDemoInventory = await Inventory.exists({
-        employee: employee._id,
-        startedAt: seedStartedAt
-    })
-
-    if (!existingDemoInventory) {
-        const selectedLaboratories = [...laboratories.values()]
-        const laboratoryTitles = new Map(selectedLaboratories.map(laboratory => [
-            String(laboratory._id),
-            laboratory.title
-        ]))
-        const seededEquipaments = await Equipament
-            .find({
-                _id: { $in: seededEquipamentIds },
-                laboratory: { $in: selectedLaboratories.map(laboratory => laboratory._id) }
-            })
-            .sort({ title: 1 })
-
-        const checkedInAt = new Date('2026-01-15T08:30:00.000Z')
-        await new Inventory({
-            laboratories: selectedLaboratories.map(laboratory => ({
-                laboratory: laboratory._id,
-                title: laboratory.title,
-                area: laboratory.area
-            })),
-            employee: employee._id,
-            status: 'Concluído',
-            startedAt: seedStartedAt,
-            completedAt: new Date('2026-01-15T09:00:00.000Z'),
-            items: seededEquipaments.map((equipament, index) => {
-                const checkedIn = index < seededEquipaments.length - 1
-                return {
-                    equipment: equipament._id,
-                    title: equipament.title,
-                    category: equipament.category,
-                    laboratoryTitle: laboratoryTitles.get(String(equipament.laboratory)),
-                    statusAtStart: equipament.status,
-                    checkedIn,
-                    ...(checkedIn ? {
-                        statusAtCheckIn: equipament.status,
-                        checkedInAt: new Date(checkedInAt.getTime() + index * 60_000)
-                    } : {})
-                }
-            })
-        }).save()
-    }
-
-    console.log(`Seeder concluído: administrador ${admin.tel}, funcionário ${employee.tel}, laboratórios, equipamentos e inventário de demonstração.`)
+    const employeeTels = [...employees.values()].map(employee => employee.tel).join(', ')
+    console.log(`Seeder concluído: administrador ${admin.tel}, funcionários ${employeeTels}, ${laboratories.size} laboratórios e ${equipamentData.length} equipamentos.`)
 }
 
 try {

@@ -1,22 +1,23 @@
 <div class="column is-11-mobile is-8-tablet is-3-desktop">
     <div class="box">
-        <canvas id="chartDoughnutEquipamentosStatus"></canvas>
+        <canvas id="chartDoughnutEquipamentosStatus" data-chart="{{json charts.categories}}"></canvas>
     </div>
 </div>
 
 <script>
 
     const chartDoughnutEquipamentosStatus = document.querySelector('#chartDoughnutEquipamentosStatus');
+    const chartCategoryData = JSON.parse(chartDoughnutEquipamentosStatus.dataset.chart);
 
     new Chart(chartDoughnutEquipamentosStatus, {
         type: 'doughnut',
         data: {
-            labels: ["Desktop", "Servidor", "Mouse"],
+            labels: chartCategoryData.labels,
             datasets: [{
                 label: '',
-                data: [10, 3, 16],
+                data: chartCategoryData.data,
                 borderWidth: 1,
-                backgroundColor: ['#777', '#f8f8f8', '#d8d8d8']
+                backgroundColor: ['#777', '#f8f8f8', '#d8d8d8', '#999', '#bbb', '#aaa']
             }]
         },
         options: {
