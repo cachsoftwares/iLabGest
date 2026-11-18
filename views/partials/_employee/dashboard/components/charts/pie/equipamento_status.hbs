@@ -1,22 +1,23 @@
 <div class="column is-11-mobile is-8-tablet is-3-desktop">
     <div class="box">
-        <canvas id="chartPieEquipamentosStatus"></canvas>
+        <canvas id="chartPieEquipamentosStatus" data-chart="{{json charts.statuses}}"></canvas>
     </div>
 </div>
 
 <script>
 
     const chartPieEquipamentosStatus = document.querySelector('#chartPieEquipamentosStatus');
+    const chartStatusData = JSON.parse(chartPieEquipamentosStatus.dataset.chart);
 
     new Chart(chartPieEquipamentosStatus, {
         type: 'pie',
         data: {
-            labels: ["Bom", "Defeituoso"],
+            labels: chartStatusData.labels,
             datasets: [{
                 label: '',
-                data: [10, 3],
+                data: chartStatusData.data,
                 borderWidth: 1,
-                backgroundColor: ['#777', '#f8f8f8']
+                backgroundColor: ['#777', '#f8f8f8', '#d8d8d8', '#999', '#bbb']
             }]
         },
         options: {

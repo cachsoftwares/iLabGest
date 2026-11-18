@@ -1,10 +1,10 @@
-import { count as countInventories } from '../../services/employee/inventory.service.js'
+import { readDashboard } from '../../services/employee/dashboard.service.js'
 
 /* controllers */
 export const home = async (req, res) => {
 
-    const inventoryCount = await countInventories()
-    res.render('home', { inventoryCount })
+    const dashboard = await readDashboard()
+    res.render('home', dashboard)
 }
 
 export const about = (req, res) => {

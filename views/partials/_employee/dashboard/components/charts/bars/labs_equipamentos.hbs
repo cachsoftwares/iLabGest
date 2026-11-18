@@ -1,20 +1,21 @@
 <div class="column is-11-mobile is-6-tablet is-6-desktop">
     <div class="box">
-        <canvas id="chartBarsLabsEquipamentos"></canvas>
+        <canvas id="chartBarsLabsEquipamentos" data-chart="{{json charts.laboratories}}"></canvas>
     </div>
 </div>
 
 <script>
 
     const chartBarsLabsEquipamentos = document.querySelector('#chartBarsLabsEquipamentos');
+    const chartLaboratoryData = JSON.parse(chartBarsLabsEquipamentos.dataset.chart);
 
     new Chart(chartBarsLabsEquipamentos, {
         type: 'bar',
         data: {
-            labels: ["Lab1", "Lab2", "Lab3"],
+            labels: chartLaboratoryData.labels,
             datasets: [{
                 label: 'QTD Equip.',
-                data: [10, 3, 16],
+                data: chartLaboratoryData.data,
                 borderWidth: 1,
                 backgroundColor: ['#777', '#f8f8f8', '#d8d8d8']
             }]
